@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="sidebar">
+<div class="sidebar">
+    <div class="scrollbar-inner sidebar-wrapper">
+        <div class="user">
+            <div class="info">
+                <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									Hizrian
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+                </a>
+                <div class="clearfix"></div>
+
+                <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                    <ul class="nav">
+                        <li>
+                            <a href="#profile">
+                                <span class="link-collapse">Quản lý điểm</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#edit">
+                                <span class="link-collapse">Quản lý học phần</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#settings">
+                                <span class="link-collapse">Quản lý đăng ký học phần</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#settings">
+                                <span class="link-collapse">Quản lý lớp học phần</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav-item active">
+                <a href="index.html">
+                    <i class="la la-adn"></i>
+                    <p>Điểm</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="components.html">
+                    <i class="la la-columns"></i>
+                    <p>Học phần</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="forms.html">
+                    <i class="la la-calendar"></i>
+                    <p>Lịch học</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="tables.html">
+                    <i class="la la-calendar-plus-o"></i>
+                    <p>Đăng ký lịch học</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
