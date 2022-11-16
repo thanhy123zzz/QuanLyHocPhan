@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="shortcut icon" href="assets/img/Logo_HCMUNRE.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+</head>
+
+<body>
+    <div class="the-end">
+        <div class="the-end__first">
+        </div>
+        <div class="the-end__second">
+            <div class="the-end__second-one">
+                <img src="assets/img/Logo_HCMUNRE.png" alt="">
+            </div>
+            <div class="the-end__second-two">
+                <div class="container">
+                </div>
+                <div class="login-content">
+                    <!-- <th:block th:if="${messageSend != ''}">
+                        <script type="text/javascript" charset="utf-8">
+                            window.onload = function () {
+                            alert("Tên đăng nhập hoặc mật khẩu không chính xác");
+                        };
+                        </script> 
+                    </th:block> -->
+                    <form method="post" th:action="@{/j_spring_security_check}">
+                        <h2 class="title">Welcome</h2>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Tài khoản</h5>
+                                <input id="TaiKhoan" name="TaiKhoan" type="text" class="input" required>
+                            </div>
+                        </div>
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Mật khẩu</h5>
+                                <input id="MatKhau" name="MatKhau" type="password" class="input" required>
+                            </div>
+                        </div>
+                        <a href="#" id="myBtn">Quên mật khẩu</a>
+                        <input type="submit" class="btn" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <div id="myModal" class="modal">
+        <!-- Modal content th:onclick="sendMail()"  th:action="@{/sendMail}"-->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="title-modal">NHẬP EMAIL EDU</h2>
+            <div class="login-content">
+                <form id="form1" method="post">
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="div">
+                            <h5>abcxyz@hcmunre.edu.vn</h5>
+                            <input id="gmail" name="gmail" pattern="^[0-9]{10}@sv.hcmunre.edu.vn$" type="email"
+                                class="input" required>
+                        </div>
+                    </div>
+                    <input type="button" class="btn" value="Gửi mã" id="sendBtn">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal">
+
+        <div class="modal-content" id="modalconfirm">
+            <span class="close" onclick="close_modal()">&times;</span>
+            <h2 class="title-modal">MÃ XÁC NHẬN</h2>
+            <div class="login-content">
+                <form action="#" method="post">
+                    <input hidden type="text" id="codeSession" th:value="${session.CODE}" />
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fa fa-code"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Code</h5>
+                            <input type="text" id="codefondirm" value="" class="input" required>
+                        </div>
+                    </div>
+                    <input type="button" class="btn" value="Nhập" id="comfirmBtn">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="close_modal()">&times;</span>
+            <h2 class="title-modal">ĐỔI MẬT KHẨU</h2>
+            <div class="login-content">
+                <form action="#" method="post">
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Nhập mật khẩu</h5>
+                            <input onkeyup="checkPassSame()" name="newpass" id="newpass" type="text" class="input">
+                        </div>
+                    </div>
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Nhập lại mật khẩu</h5>
+                            <input onkeyup="checkPassSame()" id="confirmpass" name="confirmpass" type="text"
+                                class="input">
+                        </div>
+                    </div>
+                    <input type="button" class="btn" id="btncofirmPass" value="Xác nhận">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/js/login.js"></script>
+</body>
+
+</html>
