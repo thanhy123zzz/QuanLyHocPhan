@@ -19,4 +19,10 @@ public class KhoaDaoImp implements KhoaDao {
         String sql = "select*from Khoa";
         return jdbcTemplate.query(sql,new KhoaMapper());
     }
+
+    @Override
+    public Khoa getKhoa(String MaKhoa) {
+        String sql = "select*from Khoa where MaKhoa = '"+MaKhoa+"'";
+        return jdbcTemplate.query(sql,new KhoaMapper()).get(0);
+    }
 }

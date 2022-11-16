@@ -19,4 +19,14 @@ public class Khoa {
     public void setTenKhoa(String tenKhoa) {
         this.tenKhoa = tenKhoa;
     }
+
+    public Khoa(String maKhoa, String tenKhoa) {
+        this.maKhoa = maKhoa;
+        this.tenKhoa = tenKhoa;
+    }
+    public Khoa(String maKhoa) {
+        this.maKhoa = maKhoa;
+    }
+    public Khoa() {
+    }
 }

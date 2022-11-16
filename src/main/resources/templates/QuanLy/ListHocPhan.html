@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{_layout.html}">
+<head>
+	<title th:text="'Học phần khoa '+${Khoa.getTenKhoa()}"></title>
+</head>
+<body layout:fragment="content">
+	<div class="wrapper">
+            <div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">Danh sách các học phần</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header" style="display: flex;justify-content: space-between;">
+										<div class="card-title" th:text="${Khoa.getTenKhoa()}"></div>
+										<a href="/QLHocPhan/them" class="btn btn-outline-secondary">Thêm mới</a>
+									</div>
+									<div class="card-body">
+										<table id="listHocPhan" class="table table-hover">
+											<thead>
+												<tr>
+													<th scope="col">Mã học phần</th>
+													<th scope="col">Tên học phần</th>
+													<th scope="col">Số tín chỉ</th>
+													<th scope="col">Tên khoa</th>
+													<th scope="col">Thao tác</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="hp:${ListHocPhanOfKhoa}">
+													<td th:text="${hp.getMaHocPhan()}"></td>
+													<td th:text="${hp.getTenHocPhan()}"></td>
+													<td th:text="${hp.soTinChi}"></td>
+													<td th:text="${hp.getKhoa().getTenKhoa()}"></td>
+													<td>
+														<a class="btn btn-info" th:href="'/QLHocPhan/sua/'+${hp.getMaHocPhan()}">Sửa</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>

@@ -16,4 +16,9 @@ public class KhoaServiceImp implements KhoaService {
     public List<Khoa> getListKhoa() {
         return khoaDao.getListKhoa();
     }
+
+    @Override
+    public Khoa getKhoa(String MaKhoa) {
+        return khoaDao.getKhoa(MaKhoa);
+    }
 }
