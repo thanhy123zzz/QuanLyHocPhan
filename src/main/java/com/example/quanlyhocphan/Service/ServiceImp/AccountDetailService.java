@@ -1,9 +1,10 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
-import com.example.quanlyhocphan.DAO.Imp.AccountsImp;
-import com.example.quanlyhocphan.Model.Accounts;
+import com.example.quanlyhocphan.Dao.AccountsDao;
+import com.example.quanlyhocphan.Dao.DaoImp.AccountsImp;
+import com.example.quanlyhocphan.Entities.Accounts;
 import com.example.quanlyhocphan.Service.ManagerService;
-import com.example.quanlyhocphan.DAO.AccountsDao;
+
 // import com.example.quanlyhocphan.DAO.TinTucDao;
 // import com.example.quanlyhocphan.Model.Accounts;
 // import com.example.quanlyhocphan.Model.TinTuc;
@@ -60,5 +61,15 @@ public class AccountDetailService implements UserDetailsService, ManagerService 
     @Override
     public List<Accounts> showList() {
         return accountsDao.showList();
+    }
+
+    @Override
+    public List<Accounts> getListByEmailEdu(String email){
+        return accountsDao.getListByEmailEdu(email);
+    }
+
+    @Override
+    public int updatePassWord(String matkhau, String taikhoan){
+        return accountsDao.updatePassWord(matkhau, taikhoan);
     }
 }

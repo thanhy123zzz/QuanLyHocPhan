@@ -15,13 +15,4 @@ public class HocPhanController {
     public String Index(){
         return "Index1";
     }
-    @PostMapping("/send-email")
-    public ModelAndView sendEmail(){
-        String status
-                = emailService.sendSimpleMail();
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("Index1");
-        mv.addObject("status",status);
-        return mv;
-    }
 }

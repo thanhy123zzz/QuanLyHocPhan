@@ -1,4 +1,4 @@
-package com.example.quanlyhocphan.Model;
+package com.example.quanlyhocphan.Entities;
 
 import java.io.Serializable;
 

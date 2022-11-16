@@ -27,7 +27,7 @@ public class WebSecurityConfig{
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/", "/logout","/manager/dist/**","/manager/static/**","/manager/images/**").permitAll()
-                .antMatchers("/").access("hasAnyRole('RL01','RL01')")
+                .antMatchers("/").access("hasAnyRole('RL01','RL02')")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -51,7 +51,6 @@ public class WebSecurityConfig{
 
         authProvider.setUserDetailsService(accountServiceImp);
         authProvider.setPasswordEncoder(passwordEncoder());
-
         return authProvider;
     }
 

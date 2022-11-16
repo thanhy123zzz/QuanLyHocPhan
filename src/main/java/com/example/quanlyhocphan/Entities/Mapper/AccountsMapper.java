@@ -1,7 +1,8 @@
-package com.example.quanlyhocphan.Model.Mapper;
+package com.example.quanlyhocphan.Entities.Mapper;
 
-import com.example.quanlyhocphan.Model.Accounts;
 import org.springframework.jdbc.core.RowMapper;
+
+import com.example.quanlyhocphan.Entities.Accounts;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
