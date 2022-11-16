@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface KhoaService {
     List<Khoa> getListKhoa();
+
+    Khoa getKhoa(String MaKhoa);
 }

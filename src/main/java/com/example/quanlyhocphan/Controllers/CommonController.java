@@ -1,5 +1,7 @@
 package com.example.quanlyhocphan.Controllers;
 
+import com.example.quanlyhocphan.Dao.HocPhanDao;
+import com.example.quanlyhocphan.Service.HocPhanService;
 import com.example.quanlyhocphan.Service.KhoaService;
 import com.example.quanlyhocphan.Service.ServiceImp.AccountDetailService;
 
@@ -13,6 +15,9 @@ public class CommonController {
     ModelAndView mv = new ModelAndView();
     @Autowired
     KhoaService khoaService;
+
+    @Autowired
+    HocPhanService hocPhanService;
     @Autowired
     AccountDetailService accountDetailService;
 }
