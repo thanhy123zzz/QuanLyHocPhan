@@ -1,19 +1,12 @@
 package com.example.quanlyhocphan.Controllers;
 
-import com.example.quanlyhocphan.Entities.DangKyLopHocPhan;
+import com.example.quanlyhocphan.Entities.DiemThi;
 import com.example.quanlyhocphan.Entities.LopHocPhan;
-import com.example.quanlyhocphan.Entities.SinhVien;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -41,9 +34,17 @@ public class QuanLyDiem extends CommonController{
     @GetMapping("/{MaLopHoc}")
     public ModelAndView ViewListDanhSachSVOfLop(@PathVariable("MaLopHoc") int MaLopHoc){
         mv.clear();
-        List<DangKyLopHocPhan> list = dangKyLopHocPhanService.listSinhVienofLop(MaLopHoc);
+        List<DiemThi> list = diemThiService.getListDiemThi(MaLopHoc);
         mv.addObject("listSVofLopHoc",list);
         mv.setViewName("QuanLy/ListSVLopHoc");
         return mv;
+    }
+    @PostMapping("/{MaLopHoc}/insertdiem")
+    public @ResponseBody Boolean InsertDiem(@PathVariable("MaLopHoc") int malop, String mssv, double diem){
+        if(diem<0||diem>10){
+            return false;
+        }
+        diemThiService.insertDiem(malop,mssv,diem);
+        return true;
     }
 }

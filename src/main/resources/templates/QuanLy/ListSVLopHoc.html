@@ -14,34 +14,48 @@
             <div class="card">
               <div class="card-header" style="display: flex;justify-content: space-between;">
                 <div class="card-title">Danh sách các lớp học phần</div>
-                <div class="form-group">
-                  <select id="listDotHoc" onchange="loadListLopHocPhan()" class="form-control form-control" >
-                    <option th:each="nh : ${listNamHocHocKy}" th:text="${nh.getDotHoc()}" th:value="${nh.getDotHoc()}"></option>
-                  </select>
-                </div>
+                <form class="input-group" style="width: auto">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile02">
+                    <label class="custom-file-label" for="inputGroupFile02">Chọn excel file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text btn-success" style="cursor: pointer" id="">Xác nhận</button>
+                  </div>
+                </form>
               </div>
               <div class="card-body">
                 <table id="listLopHocPhan" class="table table-hover">
                   <thead>
                   <tr>
-                    <th scope="col">Tên lớp</th>
-                    <th scope="col">Số lượng sinh viên</th>
-                    <th scope="col">Đợt học</th>
-                    <th scope="col">Thời gian học</th>
-                    <th scope="col">Tên giáo viên</th>
-                    <th scope="col">Tên phòng</th>
-                    <th scope="col">Môn học</th>
+                    <th scope="col">Mã số sinh viên</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Điểm</th>
+                    <th scope="col"></th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="lh:${ListLopHocPhan}" th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''" style="cursor: pointer;">
-                    <td th:text="${lh.tenLop}"></td>
-                    <td th:text="${lh.maxSV}"></td>
-                    <td th:text="${lh.getDocHoc().getDotHoc()}"></td>
-                    <td th:text="${lh.lichHoc.getNgayBatDau()+' → '+ lh.lichHoc.getNgayKetThuc()}"></td>
-                    <td th:text="${lh.getGiaoVien().getHo()+ ' ' + lh.getGiaoVien().getTen()}"></td>
-                    <td th:text="${lh.getPhongHoc().getTenPhong()}"></td>
-                    <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td>
+                  <!--th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''"-->
+                  <tr th:each="sv:${listSVofLopHoc}" style="cursor: pointer;">
+                    <td th:text="${sv.getSinhVien().getMaSV()}"></td>
+                    <td th:text="${sv.getSinhVien().getHo() + ' ' + sv.getSinhVien().getTen()}"></td>
+                    <td>
+                      <input th:id="'diem_'+${sv.getSinhVien().getMaSV()}"
+                             th:data-id="${sv.getSinhVien().getMaSV()}" style="width: 50%"
+                             onchange="showBtnConfirm(this.getAttribute('data-id'))"
+                             th:value="${sv.getDiem()}"
+                             min="0" max="10" step="0.1" type="number"
+                             class="form-control" placeholder="Điểm">
+                      <input id="lop" type="hidden" th:value="${sv.getLopHocPhan().getMaLop()}">
+                    </td>
+                    <td>
+                      <button th:data-id="${sv.getSinhVien().getMaSV()}"
+                              onclick="insertDiem(this.getAttribute('data-id'))"
+                              th:id="'btnConfirm_'+${sv.getSinhVien().getMaSV()}"
+                              class="btn btn-info"
+                              style="display: none;">
+                        Xác nhận</button>
+                    </td>
                   </tr>
                   </tbody>
                 </table>

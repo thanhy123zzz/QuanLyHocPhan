@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Danh sách chương trình đào tạo</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" style="display: flex;justify-content: space-between;">
+                <div class="card-title">Danh sách chương trình đào tạo</div>
+                <a href="/QL/ctdt" class="btn btn-outline-secondary">Thêm mới</a>
+              </div>
+              <div class="card-body">
+                <table id="listLopHocPhan" class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th scope="col">Mã chương trình đào tạo</th>
+                    <th scope="col">Chuyên ngành</th>
+                    <th scope="col">Đợt học</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!--th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''"-->
+                  <tr th:each="sv:${listCTDT}" style="cursor: pointer;">
+                    <td th:text="${sv.getMaCTDT()}"></td>
+                    <td th:text="${sv.getChuyenNganh().getTenChuyenNganh()}"></td>
+                    <td th:text="${sv.getNamHocHocKy().getDotHoc()}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
