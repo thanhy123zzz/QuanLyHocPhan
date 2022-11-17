@@ -38,12 +38,11 @@ public class AccountDetailService implements UserDetailsService, ManagerService 
             List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
             GrantedAuthority authority = new SimpleGrantedAuthority("RL02");
             grantList.add(authority);
-            UserDetails user = User
+            return User
                     .withUsername(accounts.getTaiKhoan())
                     .password(accounts.getMatKhau())
                     .roles(accounts.getMaRole())
                     .build();
-            return user;
         }
         return null;
     }

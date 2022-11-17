@@ -7,7 +7,7 @@
   <meta content="" name="description" />
   <meta content="" name="keywords" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Home</title>
+
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
   <link rel="stylesheet" href="/assets/css/ready.css">
@@ -49,6 +49,26 @@
                 [5, 10, 15, 'All'],
             ],
         });
+        $('#listLopHocPhan').DataTable({
+            lengthMenu: [
+                [5, 10, 15, -1],
+                [5, 10, 15, 'All'],
+            ],
+        });
     } );
+    function loadListLopHocPhan(){
+       var dotHoc = $('#listDotHoc').val();
+        $.ajax({
+            type : "POST",
+            url: "/QLDiem/load-listlophocphan",
+            data: "dotHoc="+dotHoc,
+            success: function(data) {
+                $('#listLopHocPhan').replaceWith(data);
+            },
+            error: function(data){
+                alert("lỗi!");
+            }
+        });
+    }
 </script>
 </html>

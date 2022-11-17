@@ -6,6 +6,11 @@ public class HocPhan {
     private int soTinChi;
     private Khoa khoa;
 
+    public HocPhan(int maHocPhan) {
+        this.maHocPhan = maHocPhan;
+    }
+    public HocPhan() {
+    }
     public int getMaHocPhan() {
         return maHocPhan;
     }

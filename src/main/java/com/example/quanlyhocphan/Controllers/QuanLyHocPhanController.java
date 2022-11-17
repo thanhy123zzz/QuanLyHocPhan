@@ -35,6 +35,7 @@ public class QuanLyHocPhanController extends CommonController{
     public String InsertHocPhan(HocPhan hocPhan, String maKhoa){
         hocPhan.setKhoa(new Khoa(maKhoa));
         hocPhanService.insertHocPhan(hocPhan);
+
         return "redirect:/QLHocPhan/"+maKhoa;
     }
 
