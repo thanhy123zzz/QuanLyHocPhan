@@ -1,8 +1,6 @@
 package com.example.quanlyhocphan.Controllers;
 
-import com.example.quanlyhocphan.Dao.HocPhanDao;
-import com.example.quanlyhocphan.Service.HocPhanService;
-import com.example.quanlyhocphan.Service.KhoaService;
+import com.example.quanlyhocphan.Service.*;
 import com.example.quanlyhocphan.Service.ServiceImp.AccountDetailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +18,13 @@ public class CommonController {
     HocPhanService hocPhanService;
     @Autowired
     AccountDetailService accountDetailService;
+
+    @Autowired
+    LopHocPhanService lopHocPhanService;
+
+    @Autowired
+    NamHocHocKyService namHocHocKyService;
+
+    @Autowired
+    DangKyLopHocPhanService dangKyLopHocPhanService;
 }

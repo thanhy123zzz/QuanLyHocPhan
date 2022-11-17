@@ -18,10 +18,10 @@
                 </a>
                 <div class="clearfix"></div>
 
-                <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                <div sec:authorize="hasAnyRole('RL02')" class="collapse in" id="collapseExample" aria-expanded="true" style="">
                     <ul class="nav">
                         <li>
-                            <a href="#profile">
+                            <a href="/QLDiem">
                                 <span class="link-collapse">Quản lý điểm</span>
                             </a>
                         </li>
