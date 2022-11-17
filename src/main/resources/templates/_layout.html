@@ -70,5 +70,58 @@
             }
         });
     }
+    function showBtnConfirm(mssv){
+        $('#btnConfirm_'+mssv).show();
+    }
+    function insertDiem(mssv){
+       var diem = $('#diem_'+mssv).val();
+       var lop = $('#lop').val();
+        $.ajax({
+            type : "POST",
+            url: "/QLDiem/"+lop+"/insertdiem",
+            data: "diem="+diem +"&mssv="+mssv,
+            success: function(data) {
+                if(data){
+                    alert("Thay đổi điểm thành công!");
+                    $('#btnConfirm_'+mssv).hide();
+                }
+                else{
+                    alert("Điểm không lớn hơn 10 hoặc bé hơn 0!");
+                }
+
+            },
+            error: function(data){
+                alert("lỗi!");
+            }
+        });
+    }
+    function checkMaCTDT(){
+        $.ajax({
+            type : "POST",
+            url: "/QL/check",
+            data: "maCTDT="+$('#MaCTDT').val(),
+            success: function(data) {
+                if(data){
+                    $('#MaCTDTError').show();
+                    $("#btnThemCTDT").prop('disabled', true);
+                }
+                else{
+                    $('#MaCTDTError').hide();
+                    $("#btnThemCTDT").prop('disabled', false);
+                }
+            },
+            error: function(data){
+                alert("lỗi!");
+            }
+        });
+    }
+    function checkInput(){
+        if( document.getElementById("inputGroupFile02").files.length === 0 ){
+            alert("Hãy nhập file excel");
+            return false;
+        }else {
+            return true;
+        }
+    }
 </script>
 </html>

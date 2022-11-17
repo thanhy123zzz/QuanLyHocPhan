@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Thêm chương trình đào tạo</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <form onsubmit="return checkInput()" action="/QL/insert" method="post" class="card" enctype="multipart/form-data">
+              <div class="card-header">
+                <div class="card-title">Thêm chương trình đào tạo</div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="MaCTDT">Mã chương trình đào tạo</label>
+                  <input onblur="checkMaCTDT()" type="text" class="form-control input-pill" name="MaCTDT" id="MaCTDT" placeholder="Mã chương trình đào tạo">
+                  <span id="MaCTDTError" class="text-danger" style="display: none;">Đã tồn tại!</span>
+                </div>
+                <div class="form-group">
+                  <label for="cn">Chuyên ngành</label>
+                  <select name="chuyenNganh" class="form-control input-pill" id="cn">
+                    <option th:each="k : ${listCN}" th:text="${k.getTenChuyenNganh()}" th:value="${k.getMaChuyenNganh()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="pillSelect">Đợt học</label>
+                  <select name="DotHoc" class="form-control input-pill" id="pillSelect">
+                    <option th:each="nh : ${listNamHocHocKy}" th:text="${nh.getDotHoc()}" th:value="${nh.getDotHoc()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputGroupFile02">Chọn excel file</label>
+                    <input name="fileExcel" type="file" accept=".xlsx" class="form-control input-pill" id="inputGroupFile02">
+                </div>
+              </div>
+              <div class="card-action">
+                <button disabled id="btnThemCTDT" type="submit" class="btn btn-success">Thêm</button>
+                <button class="btn btn-danger">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

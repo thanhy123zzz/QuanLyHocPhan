@@ -1,7 +1,5 @@
 package com.example.quanlyhocphan.Service;
 
-import com.example.quanlyhocphan.Dao.DaoImp.NamHocHocKyDaoImp;
-import com.example.quanlyhocphan.Dao.NamHocHocKyDao;
 import com.example.quanlyhocphan.Entities.NamHocHocKy;
 
 import java.util.Date;

@@ -1,13 +1,10 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
 import com.example.quanlyhocphan.Dao.*;
-import com.example.quanlyhocphan.Entities.LichHoc;
 import com.example.quanlyhocphan.Entities.LopHocPhan;
-import com.example.quanlyhocphan.Entities.PhongHoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 @Service
 public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopHocPhanService {
