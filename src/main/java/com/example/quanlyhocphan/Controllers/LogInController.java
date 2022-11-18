@@ -74,4 +74,9 @@ public class LogInController extends CommonController {
             return mv;
         }
     }
+
+    @GetMapping("/403")
+    public String Page403(){
+        return "403";
+    }
 }
