@@ -1,6 +1,5 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
-import com.example.quanlyhocphan.Dao.AccountsDao;
 import com.example.quanlyhocphan.Dao.DaoImp.AccountsImp;
 import com.example.quanlyhocphan.Entities.Accounts;
 import com.example.quanlyhocphan.Service.ManagerService;

@@ -5,10 +5,7 @@ import com.example.quanlyhocphan.Dao.LopHocPhanDao;
 import com.example.quanlyhocphan.Dao.NamHocHocKyDao;
 import com.example.quanlyhocphan.Dao.SinhVienDao;
 import com.example.quanlyhocphan.Entities.DangKyLopHocPhan;
-import com.example.quanlyhocphan.Entities.SinhVien;
 import com.example.quanlyhocphan.Service.DangKyLopHocPhanService;
-import com.example.quanlyhocphan.Service.NamHocHocKyService;
-import com.example.quanlyhocphan.Service.SinhVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

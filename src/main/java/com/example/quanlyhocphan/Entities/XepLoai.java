@@ -1,7 +1,5 @@
 package com.example.quanlyhocphan.Entities;
 
-import org.apache.commons.math3.analysis.function.Sinh;
-
 public class XepLoai {
     private NamHocHocKy namHocHocKy;
     private SinhVien sinhVien;

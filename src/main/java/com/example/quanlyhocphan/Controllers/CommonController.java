@@ -27,4 +27,15 @@ public class CommonController {
 
     @Autowired
     DangKyLopHocPhanService dangKyLopHocPhanService;
+
+    @Autowired
+    DiemThiService diemThiService;
+
+    @Autowired
+    ChuyenNganhService chuyenNganhService;
+    @Autowired
+    CTDTService ctdtService;
+
+    @Autowired
+    HocPhanCTDTService hocPhanCTDTService;
 }
