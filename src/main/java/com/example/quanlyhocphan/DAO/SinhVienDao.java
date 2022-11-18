@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface SinhVienDao {
     SinhVien getSV(String MaSV);
+    SinhVien getByAccount(String acc);
 }

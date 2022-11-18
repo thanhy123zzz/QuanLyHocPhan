@@ -28,6 +28,7 @@ public class WebSecurityConfig{
         http.authorizeRequests()
                 .antMatchers("/", "/logout","/manager/dist/**","/manager/static/**","/manager/images/**").permitAll()
                 .antMatchers("/QLHocPhan/**","/QLDiem/**").access("hasRole('RL02')")
+                .antMatchers("/Student/**").access("hasRole('RL01')")
                 .antMatchers("/").access("hasAnyRole('RL01','RL02')")
                 .and()
                 .formLogin()

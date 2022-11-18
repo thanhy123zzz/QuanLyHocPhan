@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{_layout.html}">
+<head>
+	<title th:text="'Học phần khoa '+${Khoa.getTenKhoa()}"></title>
+</head>
+<body layout:fragment="content">
+	<div class="wrapper">
+            <div class="main-panel">
+				<div class="content">
+					<div class="container-fluid">
+						<h4 class="page-title">Danh sách các học phần</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header" style="display: flex;justify-content: space-between;">
+										<div class="card-title" th:text="${Khoa.getTenKhoa()}"></div>
+										<!-- <a href="/QLHocPhan/them" class="btn btn-outline-secondary">Thêm mới</a> -->
+									</div>
+									<div class="card-header">
+										<div class="row">
+											<div class="col-lg-2 col-sm-6 mb-2">
+												<h6>Chuyên nghành</h6>
+											</div>
+											<div class="col-lg-3 col-sm-6 mb-2">
+												<select class="p-1 input-group" name="" id="">
+													<option class="p-1" value="">Tất cả</option>
+													<option class="p-1" value="">Công nghệ phần mềm</option>
+													<option class="p-1" value="">An toàn thông tin</option>
+													<option class="p-1" value="">Khoa học máy tính</option>
+													<option class="p-1" value="">Trí tuệ nhân tạo</option>
+
+												</select>
+											</div>
+											<div class="col-lg-2 col-sm-6 mb-2">
+												<h6>Năm học học kỳ</h6>
+											</div>
+											<div class="col-lg-3 col-sm-6 mb-2">
+												<select class="p-1 input-group" name="" id="">
+													<option value="">Tất cả</option>
+													<option value="">Kỳ I 2020 - 2021</option>
+													<option value="">Kỳ II 2020 -2021</option>
+													<option value="">Kỳ III 2020 -2021</option>
+												</select>
+											</div>
+											<div class="col-lg-2 col-sm-12">
+												<p class="btn btn-warning">Filter</p>
+											</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<table id="listHocPhan" class="table table-hover">
+											<thead>
+												<tr>
+													<!-- <th scope="col" hidden>Mã học phần</th> -->
+													<th scope="col">Số thứ tự</th>
+													<th scope="col">Tên học phần</th>
+													<th scope="col">Số tín chỉ</th>
+													<th scope="col">Tên khoa</th>
+													<th scope="col">Lựa chọn</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="hp:${ListHocPhanOfKhoa}">
+													<!-- <td th:text="${hp.getMaHocPhan()}" hidden></td> -->
+													<td th:text="${(hpStat.index)+1}"></td>
+													<td th:text="${hp.getTenHocPhan()}"></td>
+													<td th:text="${hp.soTinChi}"></td>
+													<td th:text="${hp.getKhoa().getTenKhoa()}"></td>
+													<th ><a class="btn btn-info" href="#">Đăng ký ngay</a></th>
+													<!-- <td>
+														<a class="btn btn-info" th:href="'/QLHocPhan/sua/'+${hp.getMaHocPhan()}">Sửa</a>
+													</td> -->
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>
