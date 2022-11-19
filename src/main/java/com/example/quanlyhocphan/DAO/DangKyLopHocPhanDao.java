@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface DangKyLopHocPhanDao {
     List<DangKyLopHocPhan> getListSVformLopHocPhan(int MaLop);
+
+    int getSLSinhVien(int malop);
 }

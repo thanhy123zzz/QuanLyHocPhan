@@ -8,4 +8,6 @@ public interface HocPhanCTDTDao {
     int insertHocPhanCTDT(HocPhanCTDT hocPhanCTDT);
 
     List<HocPhanCTDT> getListByMaSV(String masv);
+
+    List<HocPhanCTDT> getListHPCTDT(String mactdt);
 }

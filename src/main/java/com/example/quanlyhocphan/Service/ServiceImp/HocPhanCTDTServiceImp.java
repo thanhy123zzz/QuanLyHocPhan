@@ -14,6 +14,7 @@ import com.example.quanlyhocphan.Service.HocPhanCTDTService;
 
 import java.util.List;
 
+import org.openxmlformats.schemas.officeDocument.x2006.math.CTD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,21 @@ public class HocPhanCTDTServiceImp implements HocPhanCTDTService {
             HocPhan hp1 = hp.getHocPhan();
             Khoa khoa = khoaDao.getKhoa(hp.getHocPhan().getKhoa().getMaKhoa());
             hp1.setKhoa(khoa);
+        }
+        return list;
+    }
+
+    @Override
+    public List<HocPhanCTDT> getListByMaCTDT(String maCTDT) {
+        List<HocPhanCTDT> list = hocPhanCTDTDao.getListHPCTDT(maCTDT);
+        for(HocPhanCTDT h : list){
+            CTDT ctdt = ctdtDao.getCTDT(maCTDT);
+            ctdt.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(ctdt.getNamHocHocKy().getDotHoc()));
+            h.setCtdt(ctdt);
+
+            HocPhan hp = hocPhanDao.getHocPhan(h.getHocPhan().getMaHocPhan());
+            hp.setKhoa(khoaDao.getKhoa(hp.getKhoa().getMaKhoa()));
+            h.setHocPhan(hp);
         }
         return list;
     }

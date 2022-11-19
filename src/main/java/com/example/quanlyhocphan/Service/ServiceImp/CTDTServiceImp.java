@@ -4,6 +4,7 @@ import com.example.quanlyhocphan.Dao.CTDTDao;
 import com.example.quanlyhocphan.Dao.ChuyenNganhDao;
 import com.example.quanlyhocphan.Dao.NamHocHocKyDao;
 import com.example.quanlyhocphan.Entities.CTDT;
+import com.example.quanlyhocphan.Entities.NamHocHocKy;
 import com.example.quanlyhocphan.Service.CTDTService;
 import com.example.quanlyhocphan.Service.NamHocHocKyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,10 @@ public class CTDTServiceImp implements CTDTService {
     NamHocHocKyDao namHocHocKyDao;
     @Override
     public CTDT getCTDT(String maCTDT) {
-        return ctdtDao.getCTDT(maCTDT);
+        CTDT ctdt =  ctdtDao.getCTDT(maCTDT);
+        ctdt.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(ctdt.getNamHocHocKy().getDotHoc()));
+        ctdt.setChuyenNganh(chuyenNganhDao.getChuyenNganh(ctdt.getChuyenNganh().getMaChuyenNganh()));
+        return ctdt;
     }
 
     @Override
