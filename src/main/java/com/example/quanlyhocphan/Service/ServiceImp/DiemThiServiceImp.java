@@ -1,6 +1,7 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
 import com.example.quanlyhocphan.Dao.DiemThiDao;
+import com.example.quanlyhocphan.Dao.HocPhanDao;
 import com.example.quanlyhocphan.Dao.LopHocPhanDao;
 import com.example.quanlyhocphan.Dao.NamHocHocKyDao;
 import com.example.quanlyhocphan.Dao.SinhVienDao;
@@ -23,6 +24,8 @@ public class DiemThiServiceImp implements DiemThiService {
     SinhVienDao sinhVienDao;
     @Autowired
     NamHocHocKyDao namHocHocKyDao;
+    @Autowired
+    HocPhanDao hocPhanDao;
 
     @Override
     public String insertDiem(int malop, String mssv, double diem) {
@@ -42,6 +45,18 @@ public class DiemThiServiceImp implements DiemThiService {
         for(DiemThi d : list){
             d.setSinhVien(sinhVienDao.getSV(d.getSinhVien().getMaSV()));
             d.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(d.getNamHocHocKy().getDotHoc()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<DiemThi> getDiemThiByMaSV(String masv){
+        List<DiemThi> list  = diemThiDao.getDiemThiByMaSV(masv);
+        for(DiemThi d : list){
+            d.setSinhVien(sinhVienDao.getSV(d.getSinhVien().getMaSV()));
+            d.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(d.getNamHocHocKy().getDotHoc()));
+            d.setHocPhan(hocPhanDao.getHocPhan(d.getHocPhan().getMaHocPhan()));
+            d.setLopHocPhan(lopHocPhanDao.getLopHocPhan(d.getLopHocPhan().getMaLop()));
         }
         return list;
     }

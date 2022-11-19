@@ -42,4 +42,10 @@ public class DiemThiDaoImp implements DiemThiDao {
             return "Thất bại";
     }
 
+    @Override
+    public List<DiemThi> getDiemThiByMaSV(String masv){
+        String sql = "select * from sinhvien sv join diemthi dt on sv.MaSV = dt.MaSV where sv.MaSV = '"+masv+"'";
+        return jdbcTemplate.query(sql, new DiemThiMapper());
+    }
+
 }

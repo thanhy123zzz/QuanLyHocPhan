@@ -2,6 +2,7 @@ package com.example.quanlyhocphan.Controllers;
 
 import java.security.Principal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.MessageHandler.Partial;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.quanlyhocphan.Dao.LopHocPhanDao;
@@ -49,8 +52,18 @@ public class StudentController extends CommonController{
         mv.clear();
         mv.setViewName("SinhVien/LopHocPhan");
         List<LopHocPhan> list = lopHocPhanService.getListByMaSVandMaCN(principal.getName());
-        // mv.addObject("bien",false);
+        // List<DangKyLopHocPhan> list2 = new ArrayList<>();
+        // for(LopHocPhan lop:list){
+        //     if(dangKyLopHocPhanService.checkSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())) == true){
+        //     list2.add(dangKyLopHocPhanService.getSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())).get(0));
+        //     }else{
+        //     }
+        //     System.out.println(dangKyLopHocPhanService.checkSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())));
+        // }
         mv.addObject("ListLopHocPhan",list);
+        // mv.addObject("Listcheck",list2);
+        // mv.addObject("mssv",principal.getName());
+        System.out.println(principal.getName());
         return mv;
     }
 
@@ -79,15 +92,18 @@ public class StudentController extends CommonController{
         int insert = dangKyLopHocPhanService.insert(dk);
         if(insert > 0){
             System.out.println("Đăng ký thành công!");
+            mv.addObject("messTC", "1");
         }else{
             System.out.println("Đăng ký thất bại");
+            mv.addObject("messTC", "2");
         }
         mv.setViewName("redirect:/sinhvien/DangkyHP");
         return mv;
     }
 
-    public boolean checkDK(Principal principal, String malop){
-        return dangKyLopHocPhanService.checkSVDKHP(principal.getName(), malop);
+    @GetMapping("/checkDK")
+    public @ResponseBody boolean checkDK(String name, String malop){
+        return dangKyLopHocPhanService.checkSVDKHP(name, malop);
     }
     /* End */
 
@@ -103,6 +119,12 @@ public class StudentController extends CommonController{
     /* End */
 
     /* Điểm */
+    @GetMapping("/Diem")
+    public ModelAndView listDiem(Principal principal){
+        mv.addObject("listDiem", diemThiService.getDiemThiByMaSV(principal.getName()));
+        mv.setViewName("SinhVien/Diem");
+        return mv;
+    }
     /* End */
 
     /* Lịch học */

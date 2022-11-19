@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{_layout.html}">
+
+<head>
+  <title>Điểm thi</title>
+</head>
+
+<body layout:fragment="content">
+  <div class="wrapper">
+    <div class="main-panel">
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header" style="display: flex;justify-content: space-between;">
+                  <div class="card-title">Điểm thi</div>
+                <!-- <th:block th:if="${messTC == '1'}">
+                        <script type="text/javascript" charset="utf-8">
+                            window.onload = function () {
+                            alert("Đăng ký học phần thành công!");
+                        };
+                        </script> 
+                    </th:block> -->
+                </div>
+                <div class="card-body">
+                  <table id="listLopHocPhan" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Lớp học</th>
+                        <th scope="col">Tên học phần</th>
+                        <th scope="col">Đợt học</th>
+                        <th scope="col">Thời gian Thi</th>
+                        <th scope="col">Điểm thi</th>
+                        <th scope="col">Lần học</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="d:${listDiem}" style="cursor: pointer;">
+                        <td th:text="${d.getLopHocPhan().tenLop}"></td>
+                        <td th:text="${d.getHocPhan().tenHocPhan}"></td>
+                        <td th:text="${d.getNamHocHocKy().getDotHoc()}"></td>
+                        <td th:text="${d.ngayThi}"></td>
+                        <td th:text="${d.diem}"></td>
+                        <td th:text="${d.lanHoc}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

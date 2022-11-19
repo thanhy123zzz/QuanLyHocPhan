@@ -33,12 +33,12 @@ public class DangkyLopHocPhanDaoImp implements DangKyLopHocPhanDao {
 
     @Override
     public Boolean checkSVDKHP(String masv, String malop){
-        String sql = "SELECT * FROM quanlyhocphan.dangkylophocphan where MaSV = '"+masv+"' and MaLop = "+malop+";";
+        String sql = "SELECT * FROM quanlyhocphan.dangkylophocphan where MaSV = '"+masv+"' and MaLop = "+Integer.parseInt(malop)+";";
         List<DangKyLopHocPhan> list = jdbcTemplate.query(sql, new DangKyLopHocPhanMapper());
-        if(list != null){
-            return true;
-        }else{
+        if(list.size() == 0){
             return false;
+        }else{
+            return true;
         }
     }
 
@@ -46,5 +46,12 @@ public class DangkyLopHocPhanDaoImp implements DangKyLopHocPhanDao {
     public int getSLSinhVien(int malop) {
         String sql = "select count(Malop) as 'SL' from dangkylophocphan where malop = " + malop;
         return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    @Override
+    public List<DangKyLopHocPhan> getSVDKHP(String masv, String malop){
+        String sql = "SELECT * FROM quanlyhocphan.dangkylophocphan where MaSV = '"+masv+"' and MaLop = "+malop+";";
+        List<DangKyLopHocPhan> list = jdbcTemplate.query(sql, new DangKyLopHocPhanMapper());
+        return list;
     }
 }

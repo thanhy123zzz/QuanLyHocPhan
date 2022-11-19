@@ -10,4 +10,8 @@ public interface DangKyLopHocPhanDao {
     int insert(DangKyLopHocPhan dangKyLopHocPhan);
 
     Boolean checkSVDKHP(String masv, String malop);
+
+    int getSLSinhVien(int malop);
+
+    List<DangKyLopHocPhan> getSVDKHP(String masv, String malop);
 }

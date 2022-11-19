@@ -10,4 +10,5 @@ public interface DangKyLopHocPhanService {
     int getqldk(int malop);
     int insert(DangKyLopHocPhan dangKyLopHocPhan);
     Boolean checkSVDKHP(String masv, String malop);
+    List<DangKyLopHocPhan> getSVDKHP(String masv, String malop);
 }

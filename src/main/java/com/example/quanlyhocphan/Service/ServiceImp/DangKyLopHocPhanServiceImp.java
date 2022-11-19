@@ -44,4 +44,9 @@ public class DangKyLopHocPhanServiceImp implements DangKyLopHocPhanService {
     public Boolean checkSVDKHP(String masv, String malop){
         return dangKyLopHocPhanDao.checkSVDKHP(masv, malop);
     }
+
+    @Override
+    public List<DangKyLopHocPhan> getSVDKHP(String masv, String malop){
+        return dangKyLopHocPhanDao.getSVDKHP(masv, malop);
+    }
 }

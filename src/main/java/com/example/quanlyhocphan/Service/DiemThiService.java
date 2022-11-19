@@ -8,4 +8,6 @@ public interface DiemThiService {
     String insertDiem(int malop, String mssv, double diem);
 
     List<DiemThi> getListDiemThi(int malop);
+
+    List<DiemThi> getDiemThiByMaSV(String masv);
 }
