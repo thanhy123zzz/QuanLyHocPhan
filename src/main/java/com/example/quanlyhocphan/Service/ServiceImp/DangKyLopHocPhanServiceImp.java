@@ -29,4 +29,14 @@ public class DangKyLopHocPhanServiceImp implements DangKyLopHocPhanService {
         }
         return list;
     }
+
+    @Override
+    public int insert(DangKyLopHocPhan dangKyLopHocPhan){
+        return dangKyLopHocPhanDao.insert(dangKyLopHocPhan);
+    }
+
+    @Override
+    public Boolean checkSVDKHP(String masv, String malop){
+        return dangKyLopHocPhanDao.checkSVDKHP(masv, malop);
+    }
 }

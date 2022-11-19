@@ -10,4 +10,6 @@ public interface LopHocPhanService {
     LopHocPhan getLopHocPhan(int MaLop);
 
     String insertLopHocPhan(LopHocPhan lopHocPhan,String dotHoc);
+
+    List<LopHocPhan> getListByMaSVandMaCN(String masv);
 }

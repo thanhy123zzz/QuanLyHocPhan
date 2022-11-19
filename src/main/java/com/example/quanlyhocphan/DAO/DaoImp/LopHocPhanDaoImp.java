@@ -28,6 +28,20 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
         }
         return jdbcTemplate.query(sql,new LopHocPhanMapper());
     }
+    // xd add 
+    @Override
+    public List<LopHocPhan> getListByMaSVandMaCN(String masv){
+        // String sql = "select lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai`"+
+        // " from lophocphan lhp join hocphan hp on hp.MaHP = lhp.MaHP"+
+        // " join khoa k on k.MaKhoa = hp.MaKhoa join chuyennganh cn on cn.MaKhoa = cn.MaKhoa join sinhvien sv on sv.MaChuyenNganh = cn.MaChuyenNganh"+
+        // " where cn.MaChuyenNganh = '"+maCN+"' and sv.masv = '"+masv+"';";
+
+        String sql = "select * from sinhvien sv,chuongtrinhdaotao ctdt, hocphanctdt hpctdt, lophocphan lh"+
+        " where sv.Machuyennganh = ctdt.MaChuyenNganh and ctdt.MaCTDT = hpctdt.MaCTDT"+
+        " and lh.MaHP = hpctdt.MaHP and sv.masv = '"+masv+"' and TrangThai = 0";
+        return jdbcTemplate.query(sql, new LopHocPhanMapper());
+    }
+    /* end*/ 
 
     @Override
     public LopHocPhan getLopHocPhan(int MaLop) {

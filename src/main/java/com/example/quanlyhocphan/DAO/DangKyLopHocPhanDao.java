@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface DangKyLopHocPhanDao {
     List<DangKyLopHocPhan> getListSVformLopHocPhan(int MaLop);
+
+    int insert(DangKyLopHocPhan dangKyLopHocPhan);
+
+    Boolean checkSVDKHP(String masv, String malop);
 }

@@ -37,11 +37,30 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
 
     @Override
     public LopHocPhan getLopHocPhan(int MaLop) {
-        return lopHocPhanDao.getLopHocPhan(MaLop);
+        LopHocPhan lhp = lopHocPhanDao.getLopHocPhan(MaLop);
+        lhp.setDocHoc(namHocHocKyDao.getNamHocHocKy(lhp.getDocHoc().getDotHoc()));
+        lhp.setLichHoc(lichHocDao.getLichHoc(lhp.getLichHoc().getMaLichHoc()));
+        lhp.setGiaoVien(giaoVienDaol.getGiaoVien(lhp.getGiaoVien().getMaGV()));
+        lhp.setPhongHoc(phongHocDao.getPhongHoc(lhp.getPhongHoc().getMaPhong()));
+        lhp.setHocPhan(hocPhanDao.getHocPhan(lhp.getHocPhan().getMaHocPhan()));
+        return lhp;
     }
 
     @Override
     public String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
         return lopHocPhanDao.insertLopHocPhan(lopHocPhan,dotHoc);
+    }
+
+    @Override
+    public List<LopHocPhan> getListByMaSVandMaCN(String masv){
+        List<LopHocPhan> listLopHocPhan = lopHocPhanDao.getListByMaSVandMaCN(masv);
+        for (LopHocPhan lopHocPhan : listLopHocPhan){
+            lopHocPhan.setDocHoc(namHocHocKyDao.getNamHocHocKy(lopHocPhan.getDocHoc().getDotHoc()));
+            lopHocPhan.setLichHoc(lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc()));
+            lopHocPhan.setGiaoVien(giaoVienDaol.getGiaoVien(lopHocPhan.getGiaoVien().getMaGV()));
+            lopHocPhan.setPhongHoc(phongHocDao.getPhongHoc(lopHocPhan.getPhongHoc().getMaPhong()));
+            lopHocPhan.setHocPhan(hocPhanDao.getHocPhan(lopHocPhan.getHocPhan().getMaHocPhan()));
+        }
+        return listLopHocPhan;
     }
 }

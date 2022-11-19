@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Danh sách lớp học phần</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" style="display: flex;justify-content: space-between;">
+                <div class="card-title">Danh sách các lớp học phần</div>
+                <!-- <div th:if="${bien}" style="padding: 0;" class="form-group">
+                  <select id="listDotHoc" onchange="loadListLopHocPhan()" class="form-control form-control" >
+                    <option th:each="nh : ${listNamHocHocKy}" th:text="${nh.getDotHoc()}" th:value="${nh.getDotHoc()}"></option>
+                  </select>
+                </div> -->
+              </div>
+              <div class="card-body">
+                <table id="listLopHocPhan" class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th scope="col">Tên lớp</th>
+                    <th scope="col">Số lượng sinh viên</th>
+                    <th scope="col">Đợt học</th>
+                    <th scope="col">Thời gian học</th>
+                    <th scope="col">Tên giáo viên</th>
+                    <th scope="col">Tên phòng</th>
+                    <th scope="col">Môn học</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Lựa chọn</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="lh:${ListLopHocPhan}" style="cursor: pointer;">
+                    <td th:text="${lh.tenLop}"></td>
+                    <td th:text="${lh.maxSV}"></td>
+                    <td th:text="${lh.getDocHoc().getDotHoc()}"></td>
+                    <td th:text="${lh.lichHoc.getNgayBatDau()+' → '+ lh.lichHoc.getNgayKetThuc()}"></td>
+                    <td th:text="${lh.getGiaoVien().getHo()+ ' ' + lh.getGiaoVien().getTen()}"></td>
+                    <td th:text="${lh.getPhongHoc().getTenPhong()}"></td>
+                    <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td> 
+                    <td th:if="${lh.trangThai == true}" th:text="${'Đã đóng'}" style="color:red"></td>
+                    <td th:unless="${lh.trangThai == true}" th:text="${'Đang mở'}" style="color:green"></td>
+                    <td th:if="${lh.trangThai == true}" scope="col"><button class="btn btn-secondary" disabled>Đăng ký ngay</button></td>
+                    <td th:unless="${lh.trangThai == true}" scope="col"><a th:href="@{'/sinhvien/DangKyHP/'+${lh.getMaLop()}}"  class="btn btn-info">Đăng ký ngay</a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

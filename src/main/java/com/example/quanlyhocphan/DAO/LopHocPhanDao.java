@@ -9,5 +9,8 @@ public interface LopHocPhanDao {
     List<LopHocPhan> getListLopHocPhan(String dotHoc);
 
     LopHocPhan getLopHocPhan(int MaLop);
+
     String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc);
+
+    List<LopHocPhan> getListByMaSVandMaCN(String masv);
 }
