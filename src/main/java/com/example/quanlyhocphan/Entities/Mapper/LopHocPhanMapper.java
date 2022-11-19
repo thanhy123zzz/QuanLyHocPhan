@@ -19,6 +19,7 @@ public class LopHocPhanMapper implements RowMapper<LopHocPhan> {
         lopHocPhan.setGiaoVien(new GiaoVien(rs.getString("MaGiaoVien")));
         lopHocPhan.setPhongHoc(new PhongHoc(rs.getString("MaPhong")));
         lopHocPhan.setHocPhan(new HocPhan(rs.getInt("MaHP")));
+        lopHocPhan.setTrangThai(rs.getBoolean("TrangThai"));
         return lopHocPhan;
     }
 }

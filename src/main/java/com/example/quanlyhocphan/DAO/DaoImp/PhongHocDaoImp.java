@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PhongHocDaoImp implements PhongHocDao {
     @Autowired
@@ -17,4 +19,11 @@ public class PhongHocDaoImp implements PhongHocDao {
         String sql = "select*from PhongHoc where MaPhong ='"+maPhong+"'";
         return jdbcTemplate.query(sql,new PhongHocMapper()).get(0);
     }
+
+    @Override
+    public List<PhongHoc> getListPhongHoc() {
+        return jdbcTemplate.query("select*from phonghoc",new PhongHocMapper());
+    }
+
+
 }

@@ -10,6 +10,16 @@ public class LopHocPhan {
     private PhongHoc phongHoc;
     private HocPhan hocPhan;
 
+    private boolean trangThai;
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public LopHocPhan(int maLop) {
         this.maLop = maLop;
     }

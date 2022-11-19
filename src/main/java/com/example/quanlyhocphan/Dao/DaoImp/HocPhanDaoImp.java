@@ -14,7 +14,14 @@ public class HocPhanDaoImp implements HocPhanDao {
     JdbcTemplate jdbcTemplate;
     @Override
     public List<HocPhan> getListHocPhan(String MaKhoa) {
-        String sql = "select*from HocPhan where MaKhoa='"+MaKhoa+"'";
+        String sql;
+        if(MaKhoa==null){
+            sql = "select * from HocPhan";
+        }
+        else{
+            sql = "select*from HocPhan where MaKhoa='"+MaKhoa+"'";
+        }
+
         return jdbcTemplate.query(sql,new HocPhanMapper());
     }
 
