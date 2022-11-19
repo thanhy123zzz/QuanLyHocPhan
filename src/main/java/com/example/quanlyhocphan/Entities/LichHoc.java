@@ -10,7 +10,6 @@ public class LichHoc {
     private Date ngayBatDau;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayKetThuc;
-    private NamHocHocKy namHocHocKy;
     private CaHoc caHoc;
 
     public LichHoc(String maLichHoc) {
@@ -42,14 +41,6 @@ public class LichHoc {
 
     public void setNgayKetThuc(Date ngayKetThuc) {
         this.ngayKetThuc = ngayKetThuc;
-    }
-
-    public NamHocHocKy getNamHocHocKy() {
-        return namHocHocKy;
-    }
-
-    public void setNamHocHocKy(NamHocHocKy namHocHocKy) {
-        this.namHocHocKy = namHocHocKy;
     }
 
     public CaHoc getCaHoc() {
