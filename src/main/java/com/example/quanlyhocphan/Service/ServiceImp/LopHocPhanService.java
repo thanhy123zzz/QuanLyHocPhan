@@ -20,6 +20,7 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
     PhongHocDao phongHocDao;
     @Autowired
     HocPhanDao hocPhanDao;
+
     @Override
     public List<LopHocPhan> getListLopHocPhan(String dotHoc) {
         List<LopHocPhan> listLopHocPhan = lopHocPhanDao.getListLopHocPhan(dotHoc);
@@ -32,5 +33,15 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
         }
 
         return listLopHocPhan;
+    }
+
+    @Override
+    public LopHocPhan getLopHocPhan(int MaLop) {
+        return lopHocPhanDao.getLopHocPhan(MaLop);
+    }
+
+    @Override
+    public String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
+        return lopHocPhanDao.insertLopHocPhan(lopHocPhan,dotHoc);
     }
 }

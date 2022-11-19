@@ -16,8 +16,12 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
     @Override
     public List<LopHocPhan> getListLopHocPhan(String dotHoc) {
         String sql;
+
         if(dotHoc==null){
             sql = "SELECT * FROM quanlyhocphan.lophocphan where DotHoc = (select max(DotHoc) from namhochocky);";
+        }
+        else if (dotHoc.contains("full")){
+            sql = "SELECT * FROM quanlyhocphan.lophocphan";
         }
         else {
             sql = "SELECT * FROM quanlyhocphan.lophocphan where DotHoc = '" + dotHoc + "'";
@@ -29,6 +33,17 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
     public LopHocPhan getLopHocPhan(int MaLop) {
         String sql = "select*from lophocphan where malop = "+ MaLop;
         return jdbcTemplate.query(sql,new LopHocPhanMapper()).get(0);
+    }
+
+    @Override
+    public String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
+        String sql = "INSERT INTO `quanlyhocphan`.`lophocphan` (`TenLop`, `MaxSV`, `DotHoc`, `MaLichHoc`, `MaGiaoVien`, `MaPhong`, `MaHP`,`TrangThai`) VALUES (?, ?, ?, ?, ?, ?, ?,?);";
+        int kq = jdbcTemplate.update(sql,lopHocPhan.getTenLop(),lopHocPhan.getMaxSV(),dotHoc,lopHocPhan.getLichHoc().getMaLichHoc(),lopHocPhan.getGiaoVien().getMaGV(),lopHocPhan.getPhongHoc().getMaPhong(),lopHocPhan.getHocPhan().getMaHocPhan(),false);
+        if(kq>0)
+        {
+            return "Thành công";
+        }
+        return "Thất bại";
     }
 
 }

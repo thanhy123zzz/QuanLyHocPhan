@@ -19,6 +19,7 @@ public class QuanLyDiem extends CommonController{
         mv.setViewName("QuanLy/ListLopHocPhan");
         List<LopHocPhan> list = lopHocPhanService.getListLopHocPhan(null);
         mv.addObject("ListLopHocPhan",list);
+        mv.addObject("bien",true);
         mv.addObject("listNamHocHocKy",namHocHocKyService.getLisNamHoc());
         return mv;
     }

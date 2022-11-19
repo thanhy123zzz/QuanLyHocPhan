@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Thêm lớp học phần</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <form action="/QLLopHocPhan/them" method="post" class="card">
+              <div class="card-header">
+                <div class="card-title">Thêm lớp học phần</div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="tenLop">Tên lớp</label>
+                  <input type="text" class="form-control input-pill" name="tenLop" id="tenLop" placeholder="Tên lớp">
+                </div>
+                <div class="form-group">
+                  <label for="dotHoc">Đợt học</label>
+                  <select name="dotHocstr" class="form-control input-pill" id="dotHoc">
+                    <option th:each="k : ${listDotHoc}" th:text="${k.getDotHoc()}" th:value="${k.getDotHoc()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lichHoc">Lịch học</label>
+                  <select name="lichHoc" class="form-control input-pill" id="lichHoc">
+                    <option th:each="k : ${listLichHoc}" th:text="${k.getNgayBatDau()+' → '+k.getNgayKetThuc() +'('+k.getCaHoc().getCaHoc()+')'}" th:value="${k.getMaLichHoc()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="giaoVein">Giáo viên</label>
+                  <select name="giaoVien" class="form-control input-pill" id="giaoVein">
+                    <option th:each="k : ${listGiaoVien}" th:text="${k.getHo()+' '+k.getTen()}" th:value="${k.getMaGV()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="phongHoc">Phòng học</label>
+                  <select name="phongHoc" class="form-control input-pill" id="phongHoc">
+                    <option th:each="k : ${listPhong}" th:text="${k.getTenPhong()+'('+k.getSoGhe()+')'}" th:value="${k.getMaPhong()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="hocPhan">Học phần</label>
+                  <select name="mahocPhan" class="form-control input-pill" id="hocPhan">
+                    <option th:each="k : ${listHocPhan}" th:text="${k.getTenHocPhan()}" th:value="${k.getMaHocPhan()}"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="card-action">
+                <button id="btnThemLop" type="submit" class="btn btn-success">Thêm</button>
+                <button class="btn btn-danger">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
