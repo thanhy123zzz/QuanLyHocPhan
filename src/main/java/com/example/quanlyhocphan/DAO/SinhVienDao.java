@@ -4,4 +4,5 @@ import com.example.quanlyhocphan.Entities.SinhVien;
 
 public interface SinhVienDao {
     SinhVien getSV(String MaSV);
+    SinhVien getByAccount(String acc);
 }

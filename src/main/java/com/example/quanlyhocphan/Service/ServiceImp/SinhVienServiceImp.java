@@ -14,4 +14,9 @@ public class SinhVienServiceImp implements SinhVienService {
     public SinhVien getSinhVien(String MaSV) {
         return sinhVienDao.getSV(MaSV);
     }
+
+    @Override
+    public SinhVien getByAccount(String acc) {
+        return sinhVienDao.getByAccount(acc);
+    }
 }

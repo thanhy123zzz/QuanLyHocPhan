@@ -11,9 +11,17 @@ import org.springframework.stereotype.Repository;
 public class SinhVienDaoImp implements SinhVienDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
     @Override
     public SinhVien getSV(String MaSV) {
-        String sql = "select*from SinhVien where MaSV = '"+MaSV+"'";
-        return jdbcTemplate.query(sql,new SinhVienMapper()).get(0);
+        String sql = "select*from SinhVien where MaSV = '" + MaSV + "'";
+        return jdbcTemplate.query(sql, new SinhVienMapper()).get(0);
+    }
+
+    @Override
+    public SinhVien getByAccount(String acc){
+        String sql = "Select sv.MaSV,sv.Ten,sv.Ho,sv.EmailPrivate,sv.CCCD,sv.Phone,sv.EmailEdu,sv.GioiTinh,sv.DiaChi,sv.TaiKhoan,sv.MaChuyenNganh"+
+        "from sinhvien sv join accounts ac on ac.Taikhoan = sv.taikhoan where ac.taikhoan = "+acc+";";
+        return jdbcTemplate.query(sql, new SinhVienMapper()).get(0);
     }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{_layout.html}">
+
+<head>
+    <title>Chương trình đào tạo</title>
+</head>
+
+<body layout:fragment="content">
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" style="display: flex;justify-content: space-between;">
+                                    <div class="card-title">Chương trình đào tạo</div><br>
+                                    <h6 style="color: rgb(10, 161, 75);" th:text="'Chuyên nghành: '+ ${cn.getTenChuyenNganh()}"></h6>
+                                </div>
+                                <div class="card-body">
+                                    <table id="listLopHocPhan" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th scope="col">Mã chương trình đào tạo</th> -->
+                                                <th scope="col">Học phần</th>
+                                                <th scope="col">Số tín chỉ</th>
+                                                <th scope="col">Khoa</th>
+                                                <th scope="col">Năm học</th>
+                                                <th scope="col">Đợt học</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''"-->
+                                            <tr th:each="hp:${listCTDT}" style="cursor: pointer;">
+                                                <!-- <td th:text="${hp.getCtdt().getMaCTDT()}"></td> -->
+                                                <td th:text="${hp.getHocPhan().TenHocPhan}"></td>
+                                                <td th:text="${hp.getHocPhan().soTinChi}"></td>
+                                                <td th:text="${hp.getHocPhan().Khoa.getTenKhoa()}"></td> 
+                                                <td th:text="${hp.getCtdt().getNamHocHocKy().namHoc}"></td>
+                                                <td th:text="${hp.getCtdt().getNamHocHocKy().getDotHoc()}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

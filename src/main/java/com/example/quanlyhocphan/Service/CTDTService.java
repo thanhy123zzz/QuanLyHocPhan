@@ -9,4 +9,6 @@ public interface CTDTService {
     String insertCTDT(CTDT ctdt,String DotHoc);
 
     List<CTDT> getListCTDT();
+
+    List<CTDT> getListbyMaSV(String masv);
 }

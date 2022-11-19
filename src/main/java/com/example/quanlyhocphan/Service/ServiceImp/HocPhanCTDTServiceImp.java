@@ -1,8 +1,19 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
+import com.example.quanlyhocphan.Dao.CTDTDao;
 import com.example.quanlyhocphan.Dao.HocPhanCTDTDao;
+import com.example.quanlyhocphan.Dao.HocPhanDao;
+import com.example.quanlyhocphan.Dao.KhoaDao;
+import com.example.quanlyhocphan.Dao.NamHocHocKyDao;
+import com.example.quanlyhocphan.Entities.CTDT;
+import com.example.quanlyhocphan.Entities.HocPhan;
 import com.example.quanlyhocphan.Entities.HocPhanCTDT;
+import com.example.quanlyhocphan.Entities.Khoa;
+import com.example.quanlyhocphan.Entities.NamHocHocKy;
 import com.example.quanlyhocphan.Service.HocPhanCTDTService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +22,36 @@ public class HocPhanCTDTServiceImp implements HocPhanCTDTService {
     @Autowired
     HocPhanCTDTDao hocPhanCTDTDao;
 
+    @Autowired
+    CTDTDao ctdtDao;
+    @Autowired
+    HocPhanDao hocPhanDao;
+
+    @Autowired
+    NamHocHocKyDao namHocHocKyDao;
+
+    @Autowired 
+    KhoaDao khoaDao;
+
     @Override
     public int InsertHocPhanCTDT(HocPhanCTDT hocPhanCTDT) {
         return hocPhanCTDTDao.insertHocPhanCTDT(hocPhanCTDT);
+    }
+
+    @Override
+    public List<HocPhanCTDT> getListByMaSV(String masv){
+        List<HocPhanCTDT> list = hocPhanCTDTDao.getListByMaSV(masv);
+        for(HocPhanCTDT hp : list){
+            hp.setCtdt(ctdtDao.getCTDT(hp.getCtdt().getMaCTDT()));
+            CTDT ct =  hp.getCtdt();
+            ct.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(hp.getCtdt().getNamHocHocKy().getDotHoc()));
+            hp.setCtdt(ct);
+            //
+            hp.setHocPhan(hocPhanDao.getHocPhan(hp.getHocPhan().getMaHocPhan()));
+            HocPhan hp1 = hp.getHocPhan();
+            Khoa khoa = khoaDao.getKhoa(hp.getHocPhan().getKhoa().getMaKhoa());
+            hp1.setKhoa(khoa);
+        }
+        return list;
     }
 }

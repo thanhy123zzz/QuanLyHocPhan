@@ -9,4 +9,5 @@ public interface CTDTDao {
     String insertCTDT(CTDT ctdt, String dothoc);
 
     List<CTDT> getListCTDT();
+    List<CTDT> getbyMaSV(String masv);
 }

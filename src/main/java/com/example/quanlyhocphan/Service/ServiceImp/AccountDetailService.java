@@ -3,11 +3,6 @@ package com.example.quanlyhocphan.Service.ServiceImp;
 import com.example.quanlyhocphan.Dao.DaoImp.AccountsImp;
 import com.example.quanlyhocphan.Entities.Accounts;
 import com.example.quanlyhocphan.Service.ManagerService;
-
-// import com.example.quanlyhocphan.DAO.TinTucDao;
-// import com.example.quanlyhocphan.Model.Accounts;
-// import com.example.quanlyhocphan.Model.TinTuc;
-// import com.example.quanlyhocphan.Service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

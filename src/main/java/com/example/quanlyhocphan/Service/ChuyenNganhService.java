@@ -8,4 +8,6 @@ public interface ChuyenNganhService {
     ChuyenNganh getChuyenNganh(String maCN);
 
     List<ChuyenNganh> getListCN();
+
+    ChuyenNganh getCNByMaSV(String masv);
 }
