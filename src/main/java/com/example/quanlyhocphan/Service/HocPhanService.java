@@ -12,4 +12,6 @@ public interface HocPhanService {
     HocPhan getHocPhan(int MaHP);
 
     String updateHocPhan(HocPhan hp);
+
+    List<HocPhan> getListByMaSV(String masv);
 }

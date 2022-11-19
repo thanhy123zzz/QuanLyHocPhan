@@ -37,4 +37,13 @@ public class HocPhanServiceImp implements HocPhanService {
     public String updateHocPhan(HocPhan hp) {
         return hocPhanDao.updateHocPhan(hp);
     }
+
+    @Override
+    public List<HocPhan> getListByMaSV(String masv){
+        List<HocPhan> list = hocPhanDao.getListByMaSV(masv);
+        for(HocPhan hp : list){
+            hp.setKhoa(khoaDao.getKhoa(hp.getKhoa().getMaKhoa()));
+        }
+        return list;
+    }
 }

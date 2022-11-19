@@ -11,4 +11,6 @@ public interface HocPhanDao {
     HocPhan getHocPhan(int MaHP);
 
     String updateHocPhan(HocPhan HP);
+
+    List<HocPhan> getListByMaSV(String masv);
 }

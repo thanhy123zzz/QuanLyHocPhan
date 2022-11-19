@@ -35,4 +35,12 @@ public class CTDTDaoImp implements CTDTDao {
     public List<CTDT> getListCTDT() {
         return jdbcTemplate.query("select * from chuongtrinhdaotao",new CTDTMapper());
     }
+
+    @Override
+    public List<CTDT> getbyMaSV(String masv){
+        String sql = "select dt.mactdt,dt.machuyennganh,dt.dothoc from"+
+        " chuongtrinhdaotao dt join chuyennganh cn on cn.machuyennganh = dt.machuyennganh join sinhvien sv on cn.machuyennganh = sv.machuyennganh"+ 
+        " where sv.masv = '"+masv+"';";
+        return jdbcTemplate.query(sql, new CTDTMapper());
+    }
 }

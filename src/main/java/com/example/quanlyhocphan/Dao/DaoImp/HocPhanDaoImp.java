@@ -45,4 +45,12 @@ public class HocPhanDaoImp implements HocPhanDao {
         else
             return "THay đổi thất bại";
     }
+
+    @Override
+    public List<HocPhan> getListByMaSV(String masv){
+        String sql = "select hp.`MaHP`,hp.`TenHocPhan`,hp.`SoTinChi`,hp.`MaKhoa` from hocphan hp join hocphanctdt hpcd on hp.mahp = hpcd.mahp join"+
+        "chuongtrinhdaotao dt on dt.mactdt = hpcd.mactdt join chuyennganh cn on cn.machuyennganh = dt.machuyennganh join sinhvien sv on cn.machuyennganh = sv.machuyennganh"+
+        "where sv.masv = '"+masv+"';";
+        return jdbcTemplate.query(sql, new HocPhanMapper());
+    }
 }

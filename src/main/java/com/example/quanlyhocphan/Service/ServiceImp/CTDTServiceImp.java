@@ -38,4 +38,14 @@ public class CTDTServiceImp implements CTDTService {
         }
         return list;
     }
+
+    @Override
+    public List<CTDT> getListbyMaSV(String masv){
+        List<CTDT> list = ctdtDao.getbyMaSV(masv);
+        for(CTDT ct: list){
+            ct.setChuyenNganh(chuyenNganhDao.getChuyenNganh(ct.getChuyenNganh().getMaChuyenNganh()));
+            ct.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(ct.getNamHocHocKy().getDotHoc()));
+        }
+        return list;
+    }
 }

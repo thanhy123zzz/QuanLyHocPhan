@@ -24,4 +24,10 @@ public class ChuyenNganhDaoImp implements ChuyenNganhDao {
         String sql = "select*from chuyenNganh";
         return jdbcTemplate.query(sql,new ChuyenNganhMapper());
     }
+
+    @Override
+    public List<ChuyenNganh> getListByMaSV(String masv){
+        String sql = "Select cn.machuyennganh,cn.tenchuyennganh,cn.makhoa from chuyennganh cn join sinhvien sv on sv.machuyennganh = cn.machuyennganh where sv.masv ='"+masv+"';";
+        return jdbcTemplate.query(sql, new ChuyenNganhMapper());
+    }
 }

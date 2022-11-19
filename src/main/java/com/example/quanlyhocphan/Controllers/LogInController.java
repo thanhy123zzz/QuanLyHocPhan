@@ -30,17 +30,17 @@ public class LogInController extends CommonController {
         mv.setViewName("login");
         return mav;
     } 
-    @PostMapping("/j_spring_security_check")
-    public ModelAndView lLoginFail(String success) {
-        ModelAndView mav = new ModelAndView();
-        mv.addObject("TaiKhoan", "");
-        if (Objects.equals(success, "fail")) {
-            System.out.println("Đăng nhập thất bại");
-            mv.addObject("messageSend", "Đăng nhập thất bại");
-        }
-        mv.setViewName("login");
-        return mav;
-    }
+    // @PostMapping("/j_spring_security_check")
+    // public ModelAndView lLoginFail(String success) {
+    //     ModelAndView mav = new ModelAndView();
+    //     mv.addObject("TaiKhoan", "");
+    //     // if (Objects.equals(success, "fail")) {
+    //     //     // System.out.println("Đăng nhập thất bại");
+    //     //     // mv.addObject("messageSend", "Đăng nhập thất bại");
+    //     // }
+    //     mv.setViewName("login");
+    //     return mav;
+    // }
 
     @Autowired
     private EmailService emailService;

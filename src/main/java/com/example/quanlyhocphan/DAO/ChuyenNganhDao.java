@@ -8,4 +8,6 @@ public interface ChuyenNganhDao {
     ChuyenNganh getChuyenNganh(String MaCn);
 
     List<ChuyenNganh> getListChuyenNganh();
+
+    List<ChuyenNganh> getListByMaSV(String masv);
 }
