@@ -31,6 +31,11 @@ public class DangKyLopHocPhanServiceImp implements DangKyLopHocPhanService {
     }
 
     @Override
+    public int getqldk(int malop) {
+        return dangKyLopHocPhanDao.getSLSinhVien(malop);
+    }
+
+    @Override
     public int insert(DangKyLopHocPhan dangKyLopHocPhan){
         return dangKyLopHocPhanDao.insert(dangKyLopHocPhan);
     }

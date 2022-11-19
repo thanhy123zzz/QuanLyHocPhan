@@ -32,17 +32,21 @@
                     <th scope="col">Tên giáo viên</th>
                     <th scope="col">Tên phòng</th>
                     <th scope="col">Môn học</th>
+                    <th scope="col">Trạng thái</th>
+
                   </tr>
                   </thead>
                   <tbody>
                   <tr th:each="lh:${ListLopHocPhan}" th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''" style="cursor: pointer;">
                     <td th:text="${lh.tenLop}"></td>
-                    <td th:text="${lh.maxSV}"></td>
+                    <td th:text="${@quanLyLopHocPhanController.sl(lh.getMaLop()) + '/' + lh.maxSV}" ></td>
                     <td th:text="${lh.getDocHoc().getDotHoc()}"></td>
                     <td th:text="${lh.lichHoc.getNgayBatDau()+' → '+ lh.lichHoc.getNgayKetThuc()}"></td>
                     <td th:text="${lh.getGiaoVien().getHo()+ ' ' + lh.getGiaoVien().getTen()}"></td>
                     <td th:text="${lh.getPhongHoc().getTenPhong()}"></td>
                     <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td>
+                    <td th:if="${lh.trangThai}" class="text-success" th:text="Mở"></td>
+                    <td th:unless="${lh.trangThai}" class="text-danger" th:text="Đóng"></td>
                   </tr>
                   </tbody>
                 </table>

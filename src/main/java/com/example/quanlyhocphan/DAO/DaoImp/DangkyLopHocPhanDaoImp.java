@@ -6,8 +6,11 @@ import com.example.quanlyhocphan.Entities.LopHocPhan;
 import com.example.quanlyhocphan.Entities.Mapper.DangKyLopHocPhanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -37,5 +40,11 @@ public class DangkyLopHocPhanDaoImp implements DangKyLopHocPhanDao {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public int getSLSinhVien(int malop) {
+        String sql = "select count(Malop) as 'SL' from dangkylophocphan where malop = " + malop;
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 }

@@ -45,4 +45,9 @@ public class QuanLyLopHocPhanController extends CommonController{
         lopHocPhanService.insertLopHocPhan(lopHocPhan,dotHocstr);
         return "redirect:/QLLopHocPhan";
     }
+
+    @GetMapping("/sl")
+    public @ResponseBody int sl(int malop){
+        return dangKyLopHocPhanService.getqldk(malop);
+    }
 }
