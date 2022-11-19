@@ -7,14 +7,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class CtdtController extends CommonController{
@@ -31,7 +29,14 @@ public class CtdtController extends CommonController{
         mv.addObject("listCTDT",ctdtService.getListCTDT());
         return mv;
     }
-
+    @GetMapping("/QL/{maCTDT}")
+    public ModelAndView ViewListDetailCTDT(@PathVariable("maCTDT") String maCTDT){
+        List<HocPhanCTDT> list = hocPhanCTDTService.getListByMaCTDT(maCTDT);
+        mv.addObject("listCTDT", list);
+        mv.addObject("cn", ctdtService.getCTDT(maCTDT).getChuyenNganh());
+        mv.setViewName("SinhVien/CTDT");
+        return mv;
+    }
     @PostMapping("QL/check")
     public @ResponseBody Boolean checkCTDT(String maCTDT){
         if(ctdtService.getCTDT(maCTDT)==null){

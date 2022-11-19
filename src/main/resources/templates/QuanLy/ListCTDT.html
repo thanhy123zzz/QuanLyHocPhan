@@ -28,7 +28,9 @@
                   </thead>
                   <tbody>
                   <!--th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''"-->
-                  <tr th:each="sv:${listCTDT}" style="cursor: pointer;">
+                  <tr th:each="sv:${listCTDT}" th:data-mactdt="${sv.getMaCTDT()}"
+                      onclick="toURL(this.getAttribute('data-mactdt'))"
+                      style="cursor: pointer;">
                     <td th:text="${sv.getMaCTDT()}"></td>
                     <td th:text="${sv.getChuyenNganh().getTenChuyenNganh()}"></td>
                     <td th:text="${sv.getNamHocHocKy().getDotHoc()}"></td>

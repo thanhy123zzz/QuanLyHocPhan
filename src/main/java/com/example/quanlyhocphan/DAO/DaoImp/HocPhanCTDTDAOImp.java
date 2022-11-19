@@ -28,4 +28,10 @@ public class HocPhanCTDTDAOImp implements HocPhanCTDTDao {
         " where sv.masv = '"+masv+"';";
         return jdbcTemplate.query(sql, new HocPhanCTDTMapper());
     }
+
+    @Override
+    public List<HocPhanCTDT> getListHPCTDT(String mactdt) {
+        String sql = "select*from hocphanctdt where mactdt = '"+mactdt+"'";
+        return jdbcTemplate.query(sql,new HocPhanCTDTMapper());
+    }
 }
