@@ -11,8 +11,8 @@
             <div class="info">
                 <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
+                                    <span th:text="${session.user.getHo() + ' ' + session.user.getTen()}"></span>
+									<span class="user-level" th:text="${session.user.getAccounts().getRole().getTenRole()}"></span>
 									<span class="caret"></span>
 								</span>
                 </a>
@@ -28,11 +28,6 @@
                         <li>
                             <a href="/QLHocPhan/khoa">
                                 <span class="link-collapse">Quản lý học phần</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#settings">
-                                <span class="link-collapse">Quản lý đăng ký học phần</span>
                             </a>
                         </li>
                         <li>

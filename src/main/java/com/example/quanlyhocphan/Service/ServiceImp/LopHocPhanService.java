@@ -44,4 +44,14 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
     public String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
         return lopHocPhanDao.insertLopHocPhan(lopHocPhan,dotHoc);
     }
+
+    @Override
+    public int doiMaxSV(int malop, int sl) {
+        return lopHocPhanDao.doiMaxSV(malop,sl);
+    }
+
+    @Override
+    public String doiTrangThai(int maLop, boolean trangThai) {
+        return lopHocPhanDao.doiTrangThai(maLop,trangThai);
+    }
 }
