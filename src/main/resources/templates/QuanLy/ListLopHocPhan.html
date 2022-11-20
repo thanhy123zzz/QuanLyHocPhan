@@ -59,12 +59,12 @@
                     <th scope="col">Tên phòng</th>
                     <th scope="col">Môn học</th>
                     <th scope="col">Trạng thái</th>
-                    <th scope="col">Thao tác</th>
+                    <th scope="row">Thao tác</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr th:each="lh:${ListLopHocPhan}" >
-                    <td style="cursor: pointer;" th:text="${lh.tenLop}" th:data-malop="${lh.getMaLop()}" onclick="toURLHP(this.getAttribute('data-malop'))"></td>
+                    <td style="cursor: pointer;" th:text="${lh.tenLop}" th:data-malop="${lh.getMaLop()}" onclick="toURLHPDK(this.getAttribute('data-malop'))"></td>
                     <td>
                       <label style="width: 100%;height: 100%;"
                              th:id="'label_'+${lh.getMaLop()}" th:data-id="${lh.getMaLop()}"
@@ -79,15 +79,20 @@
                     <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td>
                     <td th:if="${lh.trangThai}" class="text-success" th:id="${'trangthai_'+lh.getMaLop()}">Đang mở</td>
                     <td th:unless="${lh.trangThai}" class="text-danger" th:id="${'trangthai_'+lh.getMaLop()}">Đã đóng</td>
-                    <td  th:if="${lh.trangThai}"><button th:id="${'btntrangthai_'+lh.getMaLop()}"
+                    <td style="display: flex; justify-content: space-between;" th:if="${lh.trangThai}"><button th:id="${'btntrangthai_'+lh.getMaLop()}"
                                                          th:data-id="${lh.getMaLop()}"
                                                          onclick="changeTrangThai(this.getAttribute('data-id'),false)"
-                                                         class="btn btn-danger">Đóng ĐK</button></td>
-                    <td th:unless="${lh.trangThai}"><button class="btn btn-success"
+                                                         class="btn btn-danger">Đóng ĐK</button>
+                      <a th:href="${'/QLLopHocPhan/sua/'+lh.getMaLop()}" class="btn btn-info">Chỉnh sửa</a>
+                    </td>
+                    <td style="display: flex; justify-content: space-between;" th:unless="${lh.trangThai}"><button class="btn btn-success"
                                                             th:id="${'btntrangthai_'+lh.getMaLop()}"
                                                             th:data-id="${lh.getMaLop()}"
                                                             onclick="changeTrangThai(this.getAttribute('data-id'),true)">
-                      Mở ĐK</button></td>
+                      Mở ĐK</button>
+
+                      <a th:href="${'/QLLopHocPhan/sua/'+lh.getMaLop()}" class="btn btn-info">Chỉnh sửa</a>
+                    </td>
                   </tr>
                   </tbody>
                 </table>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Sửa lớp học phần</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <form action="/QLLopHocPhan/sua" method="post" class="card">
+              <div class="card-header">
+                <div class="card-title">Sửa lớp học phần</div>
+              </div>
+              <div class="card-body">
+                <input th:value="${Lop.getMaLop()}" type="hidden" class="form-control input-pill" name="maLop">
+                <div class="form-group">
+                  <label for="tenLop">Tên lớp</label>
+                  <input required th:value="${Lop.getTenLop()}" type="text" class="form-control input-pill" name="tenLop" id="tenLop" placeholder="Tên lớp">
+                </div>
+                <div class="form-group">
+                  <label for="maxSV">Số lượng sinh viên tối đa</label>
+                  <input required th:value="${Lop.getMaxSV()}" type="text" class="form-control input-pill" name="maxSV" id="maxSV" placeholder="Số lượng sinh viên tối đa">
+                </div>
+                <div class="form-group">
+                  <label for="dotHoc">Đợt học</label>
+                  <select name="dotHocstr" class="form-control input-pill" id="dotHoc">
+                    <option th:each="k : ${listDotHoc}" th:text="${k.getDotHoc()}"
+                            th:if="${Lop.getDocHoc().getDotHoc()==k.getDotHoc()}"
+                            th:value="${k.getDotHoc()}" selected></option>
+                    <option th:each="k : ${listDotHoc}" th:text="${k.getDotHoc()}"
+                            th:unless="${Lop.getDocHoc().getDotHoc()==k.getDotHoc()}"
+                            th:value="${k.getDotHoc()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="lichHoc">Lịch học</label>
+                  <select name="lichHoc" class="form-control input-pill" id="lichHoc">
+                    <option th:each="k : ${listLichHoc}"
+                            th:text="${k.getNgayBatDau()+' → '+k.getNgayKetThuc() + ' ' + k.getThu() +' ('+k.getCaHoc().getCaHoc()+')'}"
+                            th:if="${Lop.getLichHoc().getMaLichHoc()==k.getMaLichHoc()}"
+                            th:value="${k.getMaLichHoc()}" selected></option>
+                    <option th:each="k : ${listLichHoc}"
+                            th:text="${k.getNgayBatDau()+' → '+k.getNgayKetThuc() + ' ' + k.getThu() +' ('+k.getCaHoc().getCaHoc()+')'}"
+                            th:unless="${Lop.getLichHoc().getMaLichHoc()==k.getMaLichHoc()}"
+                            th:value="${k.getMaLichHoc()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="giaoVein">Giáo viên</label>
+                  <select name="giaoVien" class="form-control input-pill" id="giaoVein">
+                    <option th:each="k : ${listGiaoVien}" th:text="${k.getHo()+' '+k.getTen()}"
+                            th:if="${Lop.getGiaoVien().getMaGV()==k.getMaGV()}"
+                            th:value="${k.getMaGV()}" selected></option>
+                    <option th:each="k : ${listGiaoVien}" th:text="${k.getHo()+' '+k.getTen()}"
+                            th:unless="${Lop.getGiaoVien().getMaGV()==k.getMaGV()}"
+                            th:value="${k.getMaGV()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="phongHoc">Phòng học</label>
+                  <select name="phongHoc" class="form-control input-pill" id="phongHoc">
+                    <option th:each="k : ${listPhong}" th:text="${k.getTenPhong()+'('+k.getSoGhe()+')'}"
+                            th:if="${Lop.getPhongHoc().getMaPhong()==k.getMaPhong()}"
+                            th:value="${k.getMaPhong()}" selected></option>
+                    <option th:each="k : ${listPhong}" th:text="${k.getTenPhong()+'('+k.getSoGhe()+')'}"
+                            th:unless="${Lop.getPhongHoc().getMaPhong()==k.getMaPhong()}"
+                            th:value="${k.getMaPhong()}"></option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="hocPhan">Học phần</label>
+                  <select name="mahocPhan" class="form-control input-pill" id="hocPhan">
+                    <option th:each="k : ${listHocPhan}" th:text="${k.getTenHocPhan()}"
+                            th:if="${Lop.getHocPhan().getMaHocPhan()==k.getMaHocPhan()}"
+                            th:value="${k.getMaHocPhan()}" selected></option>
+                    <option th:each="k : ${listHocPhan}" th:text="${k.getTenHocPhan()}"
+                            th:unless="${Lop.getHocPhan().getMaHocPhan()==k.getMaHocPhan()}"
+                            th:value="${k.getMaHocPhan()}"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="card-action">
+                <button id="btnThemLop" type="submit" class="btn btn-success">Sửa</button>
+                <button class="btn btn-danger">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

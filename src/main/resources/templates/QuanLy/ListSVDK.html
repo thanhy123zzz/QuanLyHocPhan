@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>Danh sách sinh viên đã đăng ký</title>
+</head>
+<body layout:fragment="content">
+<div class="wrapper">
+  <div class="main-panel">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" style="display: flex;justify-content: space-between;">
+                <div class="card-title">Danh sách sinh viên đã đăng ký</div>
+              </div>
+              <div class="card-body">
+                <table id="listLopHocPhan" class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th scope="col">Mã số sinh viên</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Ngày đăng ký</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!--th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''"-->
+                  <tr th:each="sv:${listSVofLopHoc}" style="cursor: pointer;">
+                    <td th:text="${sv.getSinhVien().getMaSV()}"></td>
+                    <td th:text="${sv.getSinhVien().getHo() + ' ' + sv.getSinhVien().getTen()}"></td>
+                    <td th:text="${sv.getNgayDangKy()}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

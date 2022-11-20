@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{_layout.html}">
 <head>
-	<title>Thêm học phần</title>
+	<title>Sửa học phần</title>
 </head>
 <body layout:fragment="content">
 	<div class="wrapper">
@@ -11,7 +11,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
-                                <form action="/QLHocPhan/sua" th:object="${HocPhan}" method="post" class="card">
+                                <form onsubmit="return confirm('Xác nhận sửa học phần này?')" action="/QLHocPhan/sua" th:object="${HocPhan}" method="post" class="card">
                                     <div class="card-header">
                                         <div class="card-title">Sửa thông tin học phần</div>
                                     </div>

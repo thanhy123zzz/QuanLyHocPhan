@@ -106,4 +106,9 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
     public String doiTrangThai(int maLop, boolean trangThai) {
         return lopHocPhanDao.doiTrangThai(maLop,trangThai);
     }
+
+    @Override
+    public String SuaLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
+        return lopHocPhanDao.SuaLopHocPhan(lopHocPhan,dotHoc);
+    }
 }
