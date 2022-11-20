@@ -10,4 +10,6 @@ public interface DiemThiService {
     List<DiemThi> getListDiemThi(int malop);
 
     List<DiemThi> getDiemThiByMaSV(String masv);
+
+    Double getDiemthi(String masv, int malop);
 }

@@ -11,8 +11,8 @@
             <div class="info">
                 <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-                                    <span th:text="${session.user.getHo() + ' ' + session.user.getTen()}"></span>
-									<span class="user-level" th:text="${session.user.getAccounts().getRole().getTenRole()}"></span>
+                                    <span th:text="${@hocPhanController.hoTen(#authentication.getName())}"></span>
+									<span class="user-level" th:text="${@hocPhanController.tenRole(#authentication.getName())}"></span>
 									<span class="caret"></span>
 								</span>
                 </a>

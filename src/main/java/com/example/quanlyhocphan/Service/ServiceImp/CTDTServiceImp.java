@@ -23,6 +23,7 @@ public class CTDTServiceImp implements CTDTService {
     @Override
     public CTDT getCTDT(String maCTDT) {
         CTDT ctdt =  ctdtDao.getCTDT(maCTDT);
+        if(ctdt==null) return null;
         ctdt.setNamHocHocKy(namHocHocKyDao.getNamHocHocKy(ctdt.getNamHocHocKy().getDotHoc()));
         ctdt.setChuyenNganh(chuyenNganhDao.getChuyenNganh(ctdt.getChuyenNganh().getMaChuyenNganh()));
         return ctdt;
