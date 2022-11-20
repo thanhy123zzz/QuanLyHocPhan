@@ -16,7 +16,7 @@ public class LichHocMapper implements RowMapper<LichHoc> {
         lichHoc.setMaLichHoc(rs.getString("MaLichHoc"));
         lichHoc.setNgayBatDau(rs.getDate("NgayBatDau"));
         lichHoc.setNgayKetThuc(rs.getDate("NgayKetThuc"));
-        lichHoc.setThu(rs.getString("thu"));
+        lichHoc.setThu(rs.getString("Thu"));
         return lichHoc;
     }
 }
