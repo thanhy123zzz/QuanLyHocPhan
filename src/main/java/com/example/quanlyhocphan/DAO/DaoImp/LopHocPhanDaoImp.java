@@ -62,8 +62,8 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
 
     @Override
     public List<LopHocPhan> getListLopHocPhansByMaSV(String masv){
-        String sql = "select lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
-        " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lh.dothoc = nh.dothoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
+        String sql = "select distinct lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
+        " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
         " and dk.masv = '"+masv+"'";
         return jdbcTemplate.query(sql, new LopHocPhanMapper());
     }
@@ -72,15 +72,15 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
     public List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv) {
         String sql;
         if(dotHoc.contains("xxxxxxxxxxxxxx")){
-            sql = "select lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
-        " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lh.dothoc = nh.dothoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
+            sql = "select distinct lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
+        " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
         " and dk.masv = '"+masv+"'";
         }
         else{
             // sql = "select lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
             // " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lh.dothoc = nh.dothoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
             // " and dk.masv = '"+masv+"' and lhp.DotHoc = '" + dotHoc+ "'";
-            sql ="select lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
+            sql ="select distinct lhp.`MaLop`,lhp.`TenLop`,lhp.`MaxSV`,lhp.`DotHoc`,lhp.`MaLichHoc`,lhp.`MaGiaoVien`,lhp.`MaPhong`,lhp.`MaHP`,lhp.`TrangThai` from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
             " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lhp.dothoc = nh.dothoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
             " and nh.dothoc ='"+dotHoc+"' and sv.masv = '"+masv+"';";
         }
