@@ -82,10 +82,10 @@ public class StudentController extends CommonController{
         int insert = dangKyLopHocPhanService.insert(dk);
         if(insert > 0){
             System.out.println("Đăng ký thành công!");
-            mv.addObject("messTC", "1");
+            // mv.addObject("messTC", "1");
         }else{
             System.out.println("Đăng ký thất bại");
-            mv.addObject("messTC", "2");
+            // mv.addObject("messTC", "2");
         }
         mv.setViewName("redirect:/sinhvien/DangkyHP");
         return mv;
@@ -94,6 +94,18 @@ public class StudentController extends CommonController{
     @GetMapping("/checkDK")
     public @ResponseBody boolean checkDK(String name, String malop){
         return dangKyLopHocPhanService.checkSVDKHP(name, malop);
+    }
+    @PostMapping("/huyDK")
+    public ModelAndView huydk(String masv,String malop){
+        System.out.println(masv+ malop);
+        int i = dangKyLopHocPhanService.deleteDangKy(masv, malop);
+        if(i>0){
+            System.out.println("Thanh Cong");
+        }else{
+            System.out.println("That Bai");
+        }
+        mv.setViewName("redirect:/sinhvien/DangkyHP");
+        return mv;
     }
     /* End */
 

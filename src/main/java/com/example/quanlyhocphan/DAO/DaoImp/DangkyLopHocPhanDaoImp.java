@@ -54,4 +54,10 @@ public class DangkyLopHocPhanDaoImp implements DangKyLopHocPhanDao {
         List<DangKyLopHocPhan> list = jdbcTemplate.query(sql, new DangKyLopHocPhanMapper());
         return list;
     }
+
+    @Override
+    public int deleteDangKy(String masv,String malop){
+        String sql = "Delete from quanlyhocphan.dangkylophocphan where masv = '"+masv+"' and malop = "+malop+";";
+        return jdbcTemplate.update(sql);
+    }
 }

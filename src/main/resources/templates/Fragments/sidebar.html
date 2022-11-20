@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="shortcut icon" href="../img/logo1.ico" type="image/x-icon">
+    <title>HCMUNRE</title>
 </head>
 <body th:fragment="sidebar">
 <div class="sidebar">
@@ -11,8 +12,8 @@
             <div class="info">
                 <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-                                    <span th:text="${@hocPhanController.hoTen(#authentication.getName())}"></span>
-									<span class="user-level" th:text="${@hocPhanController.tenRole(#authentication.getName())}"></span>
+                                    <span th:text="${session.user.getHo() + ' ' + session.user.getTen()}"></span>
+									<span class="user-level" th:text="${session.user.getAccounts().getRole().getTenRole()}"></span>
 									<span class="caret"></span>
 								</span>
                 </a>
