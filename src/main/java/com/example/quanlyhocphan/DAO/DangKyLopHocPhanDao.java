@@ -14,4 +14,6 @@ public interface DangKyLopHocPhanDao {
     int getSLSinhVien(int malop);
 
     List<DangKyLopHocPhan> getSVDKHP(String masv, String malop);
+
+    int deleteDangKy(String masv,String malop);
 }
