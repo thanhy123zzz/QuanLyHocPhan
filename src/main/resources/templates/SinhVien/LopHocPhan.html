@@ -3,6 +3,7 @@
   layout:decorate="~{_layout.html}">
 
 <head>
+	<link rel="shortcut icon" href="/assets/img/logo.ico" type="image/x-icon">
   <title>Danh sách lớp học phần</title>
 </head>
 
@@ -16,13 +17,13 @@
               <div class="card">
                 <div class="card-header" style="display: flex;justify-content: space-between;">
                   <div class="card-title">Danh sách lớp học phần</div>
-                <th:block th:if="${messTC == '1'}">
-                        <script type="text/javascript" charset="utf-8">
-                            window.onload = function () {
-                            alert("Đăng ký học phần thành công!");
-                        };
-                        </script> 
-                    </th:block>
+                  <th:block th:if="${messTC == '1'}">
+                    <script type="text/javascript" charset="utf-8">
+                      window.onload = function () {
+                        alert("Đăng ký học phần thành công!");
+                      };
+                    </script>
+                  </th:block>
                 </div>
                 <div class="card-body">
                   <table id="listLopHocPhan" class="table table-hover">
@@ -48,17 +49,53 @@
                         <td th:text="${lh.getGiaoVien().getHo()+ ' ' + lh.getGiaoVien().getTen()}"></td>
                         <td th:text="${lh.getPhongHoc().getTenPhong()}"></td>
                         <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td>
-                        <td th:if="${lh.trangThai != true}" th:text="${'Đã đóng'}" style="color:red"></td>
-                        <td th:unless="${lh.trangThai != true}" th:text="${'Đang mở'}" style="color:green"></td>
+                        <td th:if="${lh.trangThai == False}" th:text="${'Đã đóng'}" style="color:red"></td>
+                        <td th:unless="${lh.trangThai == False}" th:text="${'Đang mở'}" style="color:green"></td>
                         <!-- <th:block th:each="dkl : ${Listcheck}"> -->
-                          <td th:if="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == true}" ><button
-                              class="btn btn-secondary" disabled>Đã đăng ký</button>
-                              <button class="btn btn-danger">Hủy đăng ký</button>
-                            </td>
-                          <td th:unless="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == true}" ><a
-                              th:href="@{'/sinhvien/DangKyHP/'+${lh.getMaLop()}}" class="btn btn-info">Đăng ký ngay</a>
+                        <th:block th:if="${lh.trangThai == True}">
+                          <td
+                            th:if="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == True}">
+                            <button class="btn btn-secondary" disabled>Đã đăng ký</button><br>
+                            <button class="btn btn-danger mt-2" th:onclick="huydk([[${#authentication.getName()}]], '[[${lh.getMaLop()}]]')" >Hủy ngay</button>
+                            <script>
+                              function huydk(masv, malop) {
+                                if(confirm("Bạn có chắc muốn hủy đăng ký chứ?") == true){
+                                  setTimeout(100)
+                                $.ajax({
+                                  type: "POST",
+                                  url: "/sinhvien/huyDK",
+                                  data: "masv=" + masv + "&malop=" + malop,
+                                  success: function (data) {
+                                    alert('Hủy đăng ký thành công!');
+                                    location.reload();
+                                  },
+                                  error: function (data) {
+                                    alert("Hủy đăng ký thất bại!");
+                                  }
+                                });
+                                }else{
+                                  ///
+                                }
+                              }
+                            </script>
                           </td>
-                           <!-- && lh.getMaLop() != dkl.getLopHocPhan().getMaLop() -->
+                          <td
+                            th:unless="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == True}">
+                            <a th:href="@{'/sinhvien/DangKyHP/'+${lh.getMaLop()}}" class="btn btn-info">Đăng ký ngay</a>
+                          </td>
+                        </th:block>
+                        <th:block th:unless="${lh.trangThai == True}">
+                          <td
+                            th:if="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == True}">
+                            <button class="btn btn-success" disabled>Đã đăng ký</button>
+                          </td>
+                          <td
+                            th:unless="${@studentController.checkDK(#authentication.getPrincipal().getUsername() , lh.getMaLop()) == True}">
+                            <button class="btn btn-secondary" disabled>Đã hết hạn</button>
+                          </td>
+                        </th:block>
+                        </td>
+                        <!-- && lh.getMaLop() != dkl.getLopHocPhan().getMaLop() -->
                         <!-- </th:block> -->
                       </tr>
                     </tbody>

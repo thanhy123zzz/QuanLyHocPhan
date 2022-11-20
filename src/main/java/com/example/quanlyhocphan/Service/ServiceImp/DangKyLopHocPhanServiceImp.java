@@ -49,4 +49,9 @@ public class DangKyLopHocPhanServiceImp implements DangKyLopHocPhanService {
     public List<DangKyLopHocPhan> getSVDKHP(String masv, String malop){
         return dangKyLopHocPhanDao.getSVDKHP(masv, malop);
     }
+
+    @Override
+    public int deleteDangKy(String masv,String malop){
+        return dangKyLopHocPhanDao.deleteDangKy(masv,malop);
+    }
 }

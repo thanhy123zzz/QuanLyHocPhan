@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HCMUNRE</title>
 </head>
 <body th:fragment="header">
 <div class="main-header">
     <div class="logo-header">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             HCMUNRE
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,17 +17,6 @@
     </div>
     <nav class="navbar navbar-header navbar-expand-lg">
         <div class="container-fluid">
-
-            <form class="navbar-left navbar-form nav-search mr-md-3" method="post" >
-                <div class="input-group">
-                    <input type="text" placeholder="Tìm kiếm" class="form-control">
-                    <div class="input-group-append">
-								<span class="input-group-text">
-									<i class="la la-search search-icon"></i>
-								</span>
-                    </div>
-                </div>
-            </form>
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li sec:authorize="hasAnyRole('RL01')" class="nav-item dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
