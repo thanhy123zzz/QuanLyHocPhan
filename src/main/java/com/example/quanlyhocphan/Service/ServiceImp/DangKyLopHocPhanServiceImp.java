@@ -34,4 +34,19 @@ public class DangKyLopHocPhanServiceImp implements DangKyLopHocPhanService {
     public int getqldk(int malop) {
         return dangKyLopHocPhanDao.getSLSinhVien(malop);
     }
+
+    @Override
+    public int insert(DangKyLopHocPhan dangKyLopHocPhan){
+        return dangKyLopHocPhanDao.insert(dangKyLopHocPhan);
+    }
+
+    @Override
+    public Boolean checkSVDKHP(String masv, String malop){
+        return dangKyLopHocPhanDao.checkSVDKHP(masv, malop);
+    }
+
+    @Override
+    public List<DangKyLopHocPhan> getSVDKHP(String masv, String malop){
+        return dangKyLopHocPhanDao.getSVDKHP(masv, malop);
+    }
 }

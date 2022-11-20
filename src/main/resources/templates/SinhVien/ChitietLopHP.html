@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{_layout.html}">
+
+<head>
+    <title>Đăng ký học phần</title>
+</head>
+
+<body layout:fragment="content">
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" style="display: flex;justify-content: space-between;">
+                                    <div class="card-title" th:text="${'Đăng ký học phần '+lop.getTenLop()}"></div>
+                                    <!-- <div th:if="${bien}" style="padding: 0;" class="form-group">
+                  <select id="listDotHoc" onchange="loadListLopHocPhan()" class="form-control form-control" >
+                    <option th:each="nh : ${listNamHocHocKy}" th:text="${nh.getDotHoc()}" th:value="${nh.getDotHoc()}"></option>
+                  </select>
+                </div> -->
+                                </div>
+                                <style>
+                                    .row.signHP input {
+                                        padding: 1%;
+                                        border: none;
+                                        border-bottom: 2px solid #44ae62;
+                                        width: 100% !important;
+                                    }
+                                </style>
+                                <div class="card-body">
+                                    <form th:action="@{/sinhvien/DangKyHP/confirm}" method="POST">
+                                        <div class="row signHP">
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Tên lớp</h6>
+                                                <input readonly type="text" th:value="${lop.getTenLop()}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3" hidden>
+                                                <h6>Tên lớp</h6>
+                                                <input readonly name="maLop" type="text" th:value="${lop.getMaLop()}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Số lượng sinh viên đã đăng ký</h6>
+                                                <input readonly type="text" th:value="${lop.maxSV}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Đợt học</h6>
+                                                <input name="dothoc" readonly type="date"
+                                                    th:value="${lop.getDocHoc().getDotHoc()}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Thời gian học</h6>
+                                                <input readonly type="text"
+                                                    th:value="${lop.lichHoc.getNgayBatDau()+' → '+ lop.lichHoc.getNgayKetThuc()}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Lớp học</h6>
+                                                <input readonly type="text"
+                                                    th:value="${lop.getHocPhan().getTenHocPhan()}">
+                                            </div>
+                                            <div class="col-6 mt-2 mb-4 pb-3 pt-3">
+                                                <h6>Phòng học</h6>
+                                                <input readonly type="text"
+                                                    th:value="${lop.getPhongHoc().getTenPhong()}">
+                                            </div>
+                                            <div class="col-12 mb-5 mt-5">
+                                                <button type="submit" class="btn btn-info">Xác nhận</button>
+                                                <button type="button" class="btn btn-secondary">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

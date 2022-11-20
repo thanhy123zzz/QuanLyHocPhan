@@ -16,4 +16,11 @@ public class CaHocDaoImp implements CaHocDao {
         String sql = "select*from CaHoc where MaCaHoc = '"+ma+"'";
         return jdbcTemplate.query(sql,new CaHocMapper()).get(0);
     }
+
+    @Override
+    public CaHoc getCaHocByMaLopMaHP(int malop,int mahocphan){
+        String sql= "select ch.macahoc,ch.cahoc,ch.giobatdau,ch.gioketthuc from cahoc ch,lichhoc lh, lophocphan lhp where ch.macahoc = lh.macahoc"+
+        " and lhp.malichhoc = lh.malichhoc and lhp.mahp = "+mahocphan+" and lhp.malop ="+malop+";";
+        return jdbcTemplate.query(sql, new CaHocMapper()).get(0);
+    }
 }

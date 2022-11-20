@@ -1,9 +1,7 @@
-package com.example.quanlyhocphan.Dao;
+package com.example.quanlyhocphan.Service;
 
 import com.example.quanlyhocphan.Entities.CaHoc;
 
-public interface CaHocDao {
-    CaHoc getCaHoc(String maCa);
-
+public interface CaHocService {
     CaHoc getCaHocByMaLopMaHP(int malop,int mahocphan);
 }

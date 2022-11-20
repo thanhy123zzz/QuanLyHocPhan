@@ -12,4 +12,6 @@ public interface DiemThiDao {
     String insertDiemThi(DiemThi diemThi);
 
     String updateDiemThi(DiemThi diemThi);
+
+    List<DiemThi> getDiemThiByMaSV(String masv);
 }

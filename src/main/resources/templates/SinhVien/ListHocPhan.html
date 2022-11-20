@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{_layout.html}">
 <head>
-	<title th:text="'Học phần khoa '+${Khoa.getTenKhoa()}"></title>
+	<title th:text="'Học phần '+${Khoa.getTenKhoa()}"></title>
 </head>
 <body layout:fragment="content">
 	<div class="wrapper">
@@ -15,9 +15,8 @@
 								<div class="card">
 									<div class="card-header" style="display: flex;justify-content: space-between;">
 										<div class="card-title" th:text="${Khoa.getTenKhoa()}"></div>
-										<!-- <a href="/QLHocPhan/them" class="btn btn-outline-secondary">Thêm mới</a> -->
 									</div>
-									<div class="card-header">
+									<!-- <div class="card-header">
 										<div class="row">
 											<div class="col-lg-2 col-sm-6 mb-2">
 												<h6>Chuyên nghành</h6>
@@ -46,8 +45,8 @@
 											<div class="col-lg-2 col-sm-12">
 												<p class="btn btn-warning">Filter</p>
 											</div>
-										</div>
-									</div>
+										</div> 
+									</div> -->
 									<div class="card-body">
 										<table id="listHocPhan" class="table table-hover">
 											<thead>

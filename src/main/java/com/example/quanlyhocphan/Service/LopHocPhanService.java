@@ -10,6 +10,12 @@ public interface LopHocPhanService {
     LopHocPhan getLopHocPhan(int MaLop);
 
     String insertLopHocPhan(LopHocPhan lopHocPhan,String dotHoc);
+
+    List<LopHocPhan> getListByMaSVandMaCN(String masv);
+
+    List<LopHocPhan> getListLopHocPhansByMaSV(String masv);
+
+    List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv);
     int doiMaxSV(int malop, int sl);
 
     String doiTrangThai(int maLop, boolean trangThai);

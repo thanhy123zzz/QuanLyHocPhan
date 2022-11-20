@@ -22,4 +22,9 @@ public class NamHocHocKyServiceImp implements NamHocHocKyService {
     public List<NamHocHocKy> getLisNamHoc() {
         return namHocHocKyDao.getListNamHoc();
     }
+
+    @Override
+    public List<NamHocHocKy> getListByMaSVCN(String masv){
+        return namHocHocKyDao.getListByMaSVCN(masv);
+    }
 }

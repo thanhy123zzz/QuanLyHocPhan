@@ -15,6 +15,7 @@ public class CTDTMapper implements RowMapper<CTDT> {
         ctdt.setMaCTDT(rs.getString("MaCTDT"));
         ctdt.setChuyenNganh(new ChuyenNganh(rs.getString("MaChuyenNganh")));
         ctdt.setNamHocHocKy(new NamHocHocKy(rs.getDate("DotHoc")));
+        ctdt.setNienkhoa(rs.getInt("NienKhoa"));
         return ctdt;
     }
 }

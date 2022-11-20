@@ -2,19 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{_layout.html}">
 <head>
-	<title>Các khoa</title>
+	<title>Danh sách các khoa</title>
 </head>
 <body layout:fragment="content">
 	<div class="wrapper">
             <div class="main-panel">
 				<div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title">Các khoa</h4>
+						<h4 class="page-title">Danh sách các khoa</h4>
+
+						<a href="/sinhvien/DangkyHP" class="btn btn-outline-info">Đăng ký học phần</a>
+						<hr class="bg-info" style="height: 2px;">
 						<div class="row">
 							<div th:each="kh:${listKhoa}" class="col-md-4">
 								<div class="card card-stats card-success">
 									<div class="card-body ">
-										<a th:href="@{'/Student/Hocphan/'+${kh.getMaKhoa()}}" class="row">
+										<a th:href="@{'/sinhvien/Hocphan/'+${kh.getMaKhoa()}}" class="row">
 											<div class="col-5">
 												<div class="icon-big text-center">
 													<img src="/assets/img/logo-dai-hoc-tai-nguyen-va-moi-truong-hcmunre.webp" class="image-logo">

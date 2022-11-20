@@ -9,4 +9,6 @@ public interface NamHocHocKyDao {
     NamHocHocKy getNamHocHocKy(Date dotHoc);
 
     List<NamHocHocKy> getListNamHoc();
+
+    List<NamHocHocKy> getListByMaSVCN(String masv);
 }

@@ -8,4 +8,6 @@ public interface LichHocDao {
     LichHoc getLichHoc(String maLichHoc);
 
     List<LichHoc> getlistLichHoc();
+
+    List<LichHoc> getLisLichHocs(String masv);
 }

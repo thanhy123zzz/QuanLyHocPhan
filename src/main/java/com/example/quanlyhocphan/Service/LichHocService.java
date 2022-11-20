@@ -7,4 +7,5 @@ import java.util.List;
 public interface LichHocService {
     List<LichHoc> getListLicHoc();
     LichHoc getLichHoc(String maLichHoc);
+    List<LichHoc> getLisLichHocs(String masv);
 }
