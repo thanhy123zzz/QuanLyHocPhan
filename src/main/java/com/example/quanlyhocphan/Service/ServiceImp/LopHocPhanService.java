@@ -84,9 +84,9 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
     }
 
     @Override
-    public List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv){
-        List<LopHocPhan> list = lopHocPhanDao.getListLopHocPhanByDotHoc(dotHoc,masv);
-        for (LopHocPhan lopHocPhan : list){
+    public List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv) {
+        List<LopHocPhan> list = lopHocPhanDao.getListLopHocPhanByDotHoc(dotHoc, masv);
+        for (LopHocPhan lopHocPhan : list) {
             lopHocPhan.setDocHoc(namHocHocKyDao.getNamHocHocKy(lopHocPhan.getDocHoc().getDotHoc()));
             lopHocPhan.setLichHoc(lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc()));
             lopHocPhan.setGiaoVien(giaoVienDaol.getGiaoVien(lopHocPhan.getGiaoVien().getMaGV()));
@@ -97,6 +97,7 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
             lopHocPhan.setLichHoc(lh);
         }
         return list;
+    }
     public int doiMaxSV(int malop, int sl) {
         return lopHocPhanDao.doiMaxSV(malop,sl);
     }

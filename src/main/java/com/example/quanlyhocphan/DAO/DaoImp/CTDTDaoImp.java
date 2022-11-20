@@ -25,15 +25,15 @@ public class CTDTDaoImp implements CTDTDao {
 
     @Override
     public String insertCTDT(CTDT ctdt,String dothoc) {
-        String sql = "insert into chuongtrinhdaotao values(?,?,?)";
-        int kq = jdbcTemplate.update(sql,new Object[]{ctdt.getMaCTDT(),ctdt.getChuyenNganh().getMaChuyenNganh(),dothoc});
+        String sql = "insert into chuongtrinhdaotao values(?,?,?,?)";
+        int kq = jdbcTemplate.update(sql,new Object[]{ctdt.getMaCTDT(),ctdt.getChuyenNganh().getMaChuyenNganh(),dothoc,ctdt.getNienkhoa()});
         if(kq!=0) return "Thành công";
         else return "Thất bại";
     }
 
     @Override
     public List<CTDT> getListCTDT() {
-        return jdbcTemplate.query("select dt.mactdt,dt.machuyennganh,dt.dothoc,dt.nienkhoa from chuongtrinhdaotao",new CTDTMapper());
+        return jdbcTemplate.query("select *from chuongtrinhdaotao",new CTDTMapper());
     }
 
     @Override

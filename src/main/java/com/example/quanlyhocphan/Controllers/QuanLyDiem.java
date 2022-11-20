@@ -1,5 +1,6 @@
 package com.example.quanlyhocphan.Controllers;
 
+import com.example.quanlyhocphan.Entities.DangKyLopHocPhan;
 import com.example.quanlyhocphan.Entities.DiemThi;
 import com.example.quanlyhocphan.Entities.LopHocPhan;
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,11 @@ public class QuanLyDiem extends CommonController{
         return mv;
     }
     @PostMapping("/load-listlophocphan")
-    public ModelAndView loadListLopHocPhan(String dotHoc) throws ParseException {
+    public ModelAndView loadListLopHocPhan(String dotHoc) {
         mv.clear();
         List<LopHocPhan> list = lopHocPhanService.getListLopHocPhan(dotHoc);
         mv.addObject("ListLopHocPhan",list);
+        mv.addObject("bien",true);
         mv.setViewName("QuanLy/ListLopHocPhan :: #listLopHocPhan");
         return mv;
     }
@@ -35,7 +37,7 @@ public class QuanLyDiem extends CommonController{
     @GetMapping("/{MaLopHoc}")
     public ModelAndView ViewListDanhSachSVOfLop(@PathVariable("MaLopHoc") int MaLopHoc){
         mv.clear();
-        List<DiemThi> list = diemThiService.getListDiemThi(MaLopHoc);
+        List<DangKyLopHocPhan> list = dangKyLopHocPhanService.listSinhVienofLop(MaLopHoc);
         mv.addObject("listSVofLopHoc",list);
         mv.setViewName("QuanLy/ListSVLopHoc");
         return mv;
@@ -47,5 +49,10 @@ public class QuanLyDiem extends CommonController{
         }
         diemThiService.insertDiem(malop,mssv,diem);
         return true;
+    }
+
+    @GetMapping("/diem")
+    public @ResponseBody double getDiem(String maSV, int maLop){
+        return diemThiService.getDiemthi(maSV,maLop);
     }
 }

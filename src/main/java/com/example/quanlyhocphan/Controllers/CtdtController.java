@@ -39,6 +39,7 @@ public class CtdtController extends CommonController{
     }
     @PostMapping("QL/check")
     public @ResponseBody Boolean checkCTDT(String maCTDT){
+        if(maCTDT.equals("")) return false;
         if(ctdtService.getCTDT(maCTDT)==null){
             return false;
         }

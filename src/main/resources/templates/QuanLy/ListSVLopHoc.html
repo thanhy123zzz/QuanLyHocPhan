@@ -43,7 +43,7 @@
                       <input th:id="'diem_'+${sv.getSinhVien().getMaSV()}"
                              th:data-id="${sv.getSinhVien().getMaSV()}" style="width: 50%"
                              onchange="showBtnConfirm(this.getAttribute('data-id'))"
-                             th:value="${sv.getDiem()}"
+                             th:value="${@quanLyDiem.getDiem(sv.getSinhVien().getMaSV(),sv.getLopHocPhan().getMaLop())}"
                              min="0" max="10" step="0.1" type="number"
                              class="form-control" placeholder="Điểm">
                       <input id="lop" type="hidden" th:value="${sv.getLopHocPhan().getMaLop()}">

@@ -36,7 +36,12 @@ public class DiemThiServiceImp implements DiemThiService {
         diemThi.setHocPhan(lh.getHocPhan());
         diemThi.setNamHocHocKy(lh.getDocHoc());
         diemThi.setSinhVien(new SinhVien(mssv));
-        return diemThiDao.updateDiemThi(diemThi);
+        if(diemThiDao.getDiemThi(mssv,malop)==0.0){
+            return diemThiDao.insertDiemThi(diemThi);
+
+        }else{
+            return diemThiDao.updateDiemThi(diemThi);
+        }
     }
 
     @Override
@@ -59,5 +64,10 @@ public class DiemThiServiceImp implements DiemThiService {
             d.setLopHocPhan(lopHocPhanDao.getLopHocPhan(d.getLopHocPhan().getMaLop()));
         }
         return list;
+    }
+
+    @Override
+    public Double getDiemthi(String masv, int maLop) {
+        return diemThiDao.getDiemThi(masv,maLop);
     }
 }

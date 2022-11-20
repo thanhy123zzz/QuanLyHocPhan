@@ -29,7 +29,7 @@
                 <div class="form-group">
                   <label for="lichHoc">Lịch học</label>
                   <select name="lichHoc" class="form-control input-pill" id="lichHoc">
-                    <option th:each="k : ${listLichHoc}" th:text="${k.getNgayBatDau()+' → '+k.getNgayKetThuc() +'('+k.getCaHoc().getCaHoc()+')'}" th:value="${k.getMaLichHoc()}"></option>
+                    <option th:each="k : ${listLichHoc}" th:text="${k.getNgayBatDau()+' → '+k.getNgayKetThuc() + ' ' + k.getThu() +' ('+k.getCaHoc().getCaHoc()+')'}" th:value="${k.getMaLichHoc()}"></option>
                   </select>
                 </div>
                 <div class="form-group">

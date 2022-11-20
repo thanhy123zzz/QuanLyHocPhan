@@ -152,7 +152,7 @@
             url: "/QLLopHocPhan/changesl",
             data: "id="+id+"&sl="+sl,
             success: function(data) {
-                $('#div_sl_'+id).replaceWith('<label id="label_'+id+'" onclick="changeSL('+id+','+sl+')">'+data+'/'+sl+'</label>')
+                $('#div_sl_'+id).replaceWith('<label style="width: 100%;height: 100%;" id="label_'+id+'" onclick="changeSL('+id+','+sl+')">'+data+'/'+sl+'</label>')
             },
             error: function(data){
                 alert("lỗi!");
@@ -181,6 +181,9 @@
                 alert("lỗi!");
             }
         });
+    }
+    function toURLHP(malop){
+        window.location = 'http://localhost:8080/QLDiem/'+malop;
     }
 </script>
 </html>
