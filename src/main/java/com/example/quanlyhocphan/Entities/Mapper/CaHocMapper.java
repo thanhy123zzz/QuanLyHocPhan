@@ -13,7 +13,7 @@ public class CaHocMapper implements RowMapper<CaHoc> {
         caHoc.setMaCaHoc(rs.getString("MaCaHoc"));
         caHoc.setCaHoc(rs.getString("CaHoc"));
         caHoc.setGioBatDau(rs.getString("GioBatDau"));
-        caHoc.setGioBatDau(rs.getString("GioKetThuc"));
+        caHoc.setGioKetThu(rs.getString("GioKetThuc"));
         return caHoc;
     }
 }

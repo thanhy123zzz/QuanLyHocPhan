@@ -52,17 +52,7 @@ public class StudentController extends CommonController{
         mv.clear();
         mv.setViewName("SinhVien/LopHocPhan");
         List<LopHocPhan> list = lopHocPhanService.getListByMaSVandMaCN(principal.getName());
-        // List<DangKyLopHocPhan> list2 = new ArrayList<>();
-        // for(LopHocPhan lop:list){
-        //     if(dangKyLopHocPhanService.checkSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())) == true){
-        //     list2.add(dangKyLopHocPhanService.getSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())).get(0));
-        //     }else{
-        //     }
-        //     System.out.println(dangKyLopHocPhanService.checkSVDKHP(principal.getName(), String.valueOf(lop.getMaLop())));
-        // }
         mv.addObject("ListLopHocPhan",list);
-        // mv.addObject("Listcheck",list2);
-        // mv.addObject("mssv",principal.getName());
         System.out.println(principal.getName());
         return mv;
     }
@@ -128,6 +118,22 @@ public class StudentController extends CommonController{
     /* End */
 
     /* Lịch học */
+    @GetMapping("/LichHoc")
+    public ModelAndView ListLichHocCaNhan(Principal principal){
+        // mv.addObject("listlich", lichHocService.getLisLichHocs(principal.getName()));
+         mv.addObject("listlich",lopHocPhanService.getListLopHocPhansByMaSV(principal.getName()));
+        mv.addObject("listDK", namHocHocKyService.getListByMaSVCN(principal.getName()));
+        mv.setViewName("SinhVien/ListLichHoc");
+        return mv;
+    }
+
+    @PostMapping("/listlophocphan")
+    public ModelAndView listlophocphan(String dotHoc,Principal principal){
+        mv.clear();
+        mv.addObject("listlich",lopHocPhanService.getListLopHocPhanByDotHoc(dotHoc,principal.getName()));
+        mv.setViewName("SinhVien/ListLichHoc :: #listLopHocPhan");
+        return mv;
+    }
     /* End */
 
 

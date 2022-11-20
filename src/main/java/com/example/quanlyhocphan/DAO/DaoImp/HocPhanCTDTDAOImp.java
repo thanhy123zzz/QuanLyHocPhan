@@ -25,8 +25,14 @@ public class HocPhanCTDTDAOImp implements HocPhanCTDTDao {
     public List<HocPhanCTDT> getListByMaSV(String masv){
         String sql = "select hpcd.mahp,hpcd.mactdt from hocphan hp join hocphanctdt hpcd on hp.mahp = hpcd.mahp join "+
         " chuongtrinhdaotao dt on dt.mactdt = hpcd.mactdt join chuyennganh cn on cn.machuyennganh = dt.machuyennganh join sinhvien sv on cn.machuyennganh = sv.machuyennganh "+
-        " where sv.masv = '"+masv+"';";
+        " where sv.masv = '"+masv+"' and dt.nienkhoa = "+CDchuoi(masv)+";";
         return jdbcTemplate.query(sql, new HocPhanCTDTMapper());
+    }
+    public int CDchuoi(String masv){
+        // String masvx = masv.substring(0,3);
+        // System.out.println(masvx);
+        int maone = Integer.parseInt(masv.substring(0,2));
+        return maone;
     }
 
     @Override

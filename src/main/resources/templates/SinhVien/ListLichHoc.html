@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{_layout.html}">
+
+<head>
+    <title>Lịch học</title>
+</head>
+
+<body layout:fragment="content">
+    <div class="wrapper">
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header" style="display: flex;justify-content: space-between;">
+                                    <div class="card-title">Lịch học</div>
+                                    <!-- <th:block th:if="${messTC == '1'}">
+                        <script type="text/javascript" charset="utf-8">
+                            window.onload = function () {
+                            alert("Đăng ký học phần thành công!");
+                        };
+                        </script> 
+                    </th:block> -->
+                                    <script>
+                                        function loadListLopHocPhanx() {
+                                            var dotHoc = $('#listDotHoc').val();
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "/sinhvien/listlophocphan",
+                                                data: "dotHoc=" + dotHoc,
+                                                success: function (data) {
+                                                    $('#listLopHocPhan').replaceWith(data);
+                                                },
+                                                error: function (data) {
+                                                    alert("Đã có lỗi xảy ra!\nVui lòng thử lại sau.");
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <div style="padding: 0;" class="form-group">
+                                        <select id="listDotHoc" onchange="loadListLopHocPhanx()"
+                                            class="form-control form-control">
+                                            <option value="xxxxxxxxxxxxxx">Tất cả</option>
+                                            <option th:each="nh : ${listDK}" th:text="${nh.getDotHoc()}"
+                                                th:value="${nh.getDotHoc()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table id="listLopHocPhan" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Dot hoc</th>
+                                                <th scope="col">Thời gian học</th>
+                                                <th scope="col">Ngày học</th>
+                                                <th scope="col">Phòng Học</th>
+                                                <th scope="col">Ca học</th>
+                                                <th scope="col">Thời gian ca học</th>
+                                                <th scope="col">Giảng viên</th>
+                                                <th scope="col">Tên học phần</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lhp:${listlich}" style="cursor: pointer;">
+                                                <td th:text="${lhp.getDocHoc().getDotHoc()}"></td>
+                                                <td
+                                                    th:text="${lhp.lichHoc.getNgayBatDau()+' → '+ lhp.lichHoc.getNgayKetThuc()}">
+                                                </td>
+                                                <td th:text="${lhp.lichHoc.getThu()}"></td>
+                                                <td th:text="${lhp.getPhongHoc().getTenPhong()}"></td>
+                                                <td th:text="${lhp.getLichHoc().getCaHoc().getCaHoc()}"></td>
+                                                <td
+                                                    th:text="${lhp.getLichHoc().getCaHoc().gioBatDau+' → '+lhp.getLichHoc().getCaHoc().gioKetThu}">
+                                                </td>
+                                                <td
+                                                    th:text="${lhp.getGiaoVien().getHo()+ ' ' + lhp.getGiaoVien().getTen()}">
+                                                </td>
+                                                <td th:text="${lhp.getHocPhan().getTenHocPhan()}"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

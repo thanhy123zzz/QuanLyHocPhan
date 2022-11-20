@@ -12,4 +12,8 @@ public interface LopHocPhanService {
     String insertLopHocPhan(LopHocPhan lopHocPhan,String dotHoc);
 
     List<LopHocPhan> getListByMaSVandMaCN(String masv);
+
+    List<LopHocPhan> getListLopHocPhansByMaSV(String masv);
+
+    List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv);
 }

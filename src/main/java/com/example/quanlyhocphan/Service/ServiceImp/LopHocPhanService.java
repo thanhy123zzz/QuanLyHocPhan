@@ -1,6 +1,7 @@
 package com.example.quanlyhocphan.Service.ServiceImp;
 
 import com.example.quanlyhocphan.Dao.*;
+import com.example.quanlyhocphan.Entities.LichHoc;
 import com.example.quanlyhocphan.Entities.LopHocPhan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
     PhongHocDao phongHocDao;
     @Autowired
     HocPhanDao hocPhanDao;
+    @Autowired
+    CaHocDao cahocdao;
 
     @Override
     public List<LopHocPhan> getListLopHocPhan(String dotHoc) {
@@ -62,5 +65,37 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
             lopHocPhan.setHocPhan(hocPhanDao.getHocPhan(lopHocPhan.getHocPhan().getMaHocPhan()));
         }
         return listLopHocPhan;
+    }
+
+    @Override
+    public List<LopHocPhan> getListLopHocPhansByMaSV(String masv){
+        List<LopHocPhan> list = lopHocPhanDao.getListLopHocPhansByMaSV(masv);
+        for (LopHocPhan lopHocPhan : list){
+            lopHocPhan.setDocHoc(namHocHocKyDao.getNamHocHocKy(lopHocPhan.getDocHoc().getDotHoc()));
+            lopHocPhan.setLichHoc(lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc()));
+            lopHocPhan.setGiaoVien(giaoVienDaol.getGiaoVien(lopHocPhan.getGiaoVien().getMaGV()));
+            lopHocPhan.setPhongHoc(phongHocDao.getPhongHoc(lopHocPhan.getPhongHoc().getMaPhong()));
+            lopHocPhan.setHocPhan(hocPhanDao.getHocPhan(lopHocPhan.getHocPhan().getMaHocPhan()));
+            LichHoc lh = lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc());
+            lh.setCaHoc(cahocdao.getCaHocByMaLopMaHP(lopHocPhan.getMaLop(), lopHocPhan.getHocPhan().getMaHocPhan()));
+            lopHocPhan.setLichHoc(lh);
+        }
+        return list;
+    }
+
+    @Override
+    public List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv){
+        List<LopHocPhan> list = lopHocPhanDao.getListLopHocPhanByDotHoc(dotHoc,masv);
+        for (LopHocPhan lopHocPhan : list){
+            lopHocPhan.setDocHoc(namHocHocKyDao.getNamHocHocKy(lopHocPhan.getDocHoc().getDotHoc()));
+            lopHocPhan.setLichHoc(lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc()));
+            lopHocPhan.setGiaoVien(giaoVienDaol.getGiaoVien(lopHocPhan.getGiaoVien().getMaGV()));
+            lopHocPhan.setPhongHoc(phongHocDao.getPhongHoc(lopHocPhan.getPhongHoc().getMaPhong()));
+            lopHocPhan.setHocPhan(hocPhanDao.getHocPhan(lopHocPhan.getHocPhan().getMaHocPhan()));
+            LichHoc lh = lichHocDao.getLichHoc(lopHocPhan.getLichHoc().getMaLichHoc());
+            lh.setCaHoc(cahocdao.getCaHocByMaLopMaHP(lopHocPhan.getMaLop(), lopHocPhan.getHocPhan().getMaHocPhan()));
+            lopHocPhan.setLichHoc(lh);
+        }
+        return list;
     }
 }
