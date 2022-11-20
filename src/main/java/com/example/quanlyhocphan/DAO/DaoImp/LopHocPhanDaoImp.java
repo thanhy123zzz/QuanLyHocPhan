@@ -97,4 +97,13 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
         return kq>0?"Đổi trạng thái thành công":"Đổi trạng thái thất bại";
     }
 
+    @Override
+    public String SuaLopHocPhan(LopHocPhan lopHocPhan, String dotHoc) {
+        String sql = "UPDATE `quanlyhocphan`.`lophocphan` SET `TenLop` = ?, `MaxSV` = ?, `DotHoc` = ?, `MaLichHoc` = ?, " +
+                "`MaGiaoVien` = ?, `MaPhong` = ?, `MaHP` = ? WHERE (`MaLop` = ?);";
+        int kq = jdbcTemplate.update(sql,new Object[]{lopHocPhan.getTenLop(),lopHocPhan.getMaxSV(),dotHoc,lopHocPhan.getLichHoc().getMaLichHoc()
+        ,lopHocPhan.getGiaoVien().getMaGV(),lopHocPhan.getPhongHoc().getMaPhong(),lopHocPhan.getHocPhan().getMaHocPhan(),lopHocPhan.getMaLop()});
+       if(kq>0) return "Thành công";
+       return "Thất bại";
+    }
 }
