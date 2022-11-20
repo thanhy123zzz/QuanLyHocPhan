@@ -26,7 +26,7 @@ public class LichHocDaoImp implements LichHocDao {
 
     @Override
     public List<LichHoc> getLisLichHocs(String masv){
-        String sql = "select lh.malichhoc,lh.ngaybatdau,lh.ngayketthuc,lh.macahoc,lh.dothoc,lh.thu from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
+        String sql = "select lh.malichhoc,lh.ngaybatdau,lh.ngayketthuc,lh.macahoc,lh.thu from lichhoc lh,hocphan hp,lophocphan lhp,namhochocky nh,phonghoc p,cahoc ch, dangkylophocphan dk, sinhvien sv"+
         " where lhp.maphong = p.maphong and lhp.mahp = hp.mahp and lh.macahoc = ch.macahoc and lh.dothoc = nh.dothoc and lhp.malichhoc = lh.malichhoc and dk.masv = sv.masv and dk.malop = lhp.malop"+
         " and dk.masv = '"+masv+"';";
         return jdbcTemplate.query(sql, new LichHocMapper());

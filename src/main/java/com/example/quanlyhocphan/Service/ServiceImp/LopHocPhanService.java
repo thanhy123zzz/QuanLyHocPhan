@@ -97,6 +97,7 @@ public class LopHocPhanService implements com.example.quanlyhocphan.Service.LopH
             lopHocPhan.setLichHoc(lh);
         }
         return list;
+    }
     public int doiMaxSV(int malop, int sl) {
         return lopHocPhanDao.doiMaxSV(malop,sl);
     }

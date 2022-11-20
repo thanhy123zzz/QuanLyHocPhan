@@ -33,7 +33,7 @@ public class CTDTDaoImp implements CTDTDao {
 
     @Override
     public List<CTDT> getListCTDT() {
-        return jdbcTemplate.query("select dt.mactdt,dt.machuyennganh,dt.dothoc,dt.nienkhoa from chuongtrinhdaotao",new CTDTMapper());
+        return jdbcTemplate.query("select dt.mactdt,dt.machuyennganh,dt.dothoc,dt.nienkhoa from chuongtrinhdaotao dt",new CTDTMapper());
     }
 
     @Override
