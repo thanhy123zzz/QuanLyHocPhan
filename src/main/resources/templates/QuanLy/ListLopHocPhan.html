@@ -33,20 +33,34 @@
                     <th scope="col">Tên phòng</th>
                     <th scope="col">Môn học</th>
                     <th scope="col">Trạng thái</th>
-
+                    <th scope="col">Thao tác</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="lh:${ListLopHocPhan}" th:onclick="'window.location.href=\'/QLDiem/' + ${lh.getMaLop()} + '\''" style="cursor: pointer;">
+                  <tr th:each="lh:${ListLopHocPhan}" style="cursor: pointer;">
                     <td th:text="${lh.tenLop}"></td>
-                    <td th:text="${@quanLyLopHocPhanController.sl(lh.getMaLop()) + '/' + lh.maxSV}" ></td>
+                    <td>
+                    <label th:id="'label_'+${lh.getMaLop()}" th:data-id="${lh.getMaLop()}"
+                           th:data-value="${lh.maxSV}"
+                           onclick="changeSL(this.getAttribute('data-id'),this.getAttribute('data-value'))"
+                           th:text="${@quanLyLopHocPhanController.sl(lh.getMaLop()) + '/' + lh.maxSV}" ></label>
+                    </td>
                     <td th:text="${lh.getDocHoc().getDotHoc()}"></td>
                     <td th:text="${lh.lichHoc.getNgayBatDau()+' → '+ lh.lichHoc.getNgayKetThuc()}"></td>
                     <td th:text="${lh.getGiaoVien().getHo()+ ' ' + lh.getGiaoVien().getTen()}"></td>
                     <td th:text="${lh.getPhongHoc().getTenPhong()}"></td>
                     <td th:text="${lh.getHocPhan().getTenHocPhan()}"></td>
-                    <td th:if="${lh.trangThai}" class="text-success" th:text="Mở"></td>
-                    <td th:unless="${lh.trangThai}" class="text-danger" th:text="Đóng"></td>
+                    <td th:if="${lh.trangThai}" class="text-success" th:id="${'trangthai_'+lh.getMaLop()}">Đang mở</td>
+                    <td th:unless="${lh.trangThai}" class="text-danger" th:id="${'trangthai_'+lh.getMaLop()}">Đã đóng</td>
+                    <td th:if="${lh.trangThai}"><button th:id="${'btntrangthai_'+lh.getMaLop()}"
+                                                        th:data-id="${lh.getMaLop()}"
+                                                        onclick="changeTrangThai(this.getAttribute('data-id'),false)"
+                                                        class="btn btn-danger">Đóng ĐK</button></td>
+                    <td th:unless="${lh.trangThai}"><button class="btn btn-success"
+                                                            th:id="${'btntrangthai_'+lh.getMaLop()}"
+                                                            th:data-id="${lh.getMaLop()}"
+                                                            onclick="changeTrangThai(this.getAttribute('data-id'),true)">
+                      Mở ĐK</button></td>
                   </tr>
                   </tbody>
                 </table>

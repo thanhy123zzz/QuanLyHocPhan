@@ -1,7 +1,9 @@
 package com.example.quanlyhocphan.Controllers;
 
+import com.example.quanlyhocphan.Dao.AccountsDao;
 import com.example.quanlyhocphan.Dao.GiaoVienDao;
 import com.example.quanlyhocphan.Dao.PhongHocDao;
+import com.example.quanlyhocphan.Dao.QuanLyDao;
 import com.example.quanlyhocphan.Service.*;
 import com.example.quanlyhocphan.Service.ServiceImp.AccountDetailService;
 
@@ -49,4 +51,13 @@ public class CommonController {
 
     @Autowired
     PhongHocDao phongHocDao;
+
+    @Autowired
+    AccountsDao accountsDao;
+
+    @Autowired
+    SinhVienService sinhVienService;
+
+    @Autowired
+    QuanLyDao quanLyDao;
 }

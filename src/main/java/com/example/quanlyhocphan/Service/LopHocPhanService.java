@@ -16,4 +16,7 @@ public interface LopHocPhanService {
     List<LopHocPhan> getListLopHocPhansByMaSV(String masv);
 
     List<LopHocPhan> getListLopHocPhanByDotHoc(String dotHoc,String masv);
+    int doiMaxSV(int malop, int sl);
+
+    String doiTrangThai(int maLop, boolean trangThai);
 }

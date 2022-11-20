@@ -4,6 +4,8 @@ import com.example.quanlyhocphan.Dao.AccountsDao;
 import com.example.quanlyhocphan.Entities.Accounts;
 import com.example.quanlyhocphan.Entities.Mapper.AccountsMapper;
 
+import com.example.quanlyhocphan.Entities.Mapper.RoleMapper;
+import com.example.quanlyhocphan.Entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,10 +24,16 @@ public class AccountsImp implements AccountsDao {
         String query = "select * from accounts where TaiKhoan = '"+username+"'";
         List<Accounts> list = new ArrayList<Accounts>();
         list = jdbctemplate.query(query,new AccountsMapper());
-        if(list.size()==1)return list.get(0);
+        Accounts accounts = list.get(0);
+        accounts.setRole(getrole(accounts.getMaRole()));
+        if(list.size()==1)return accounts;
         else return null;
     }
 
+    public Role getrole(String marole){
+        String sql = "select*from roles where marole = '"+marole+"'";
+        return jdbctemplate.query(sql,new RoleMapper()).get(0);
+    }
     @Override
     public int insertAccount(Accounts accounts) {
         String query = "insert into accounts(TaiKhoan,MatKhau,IDrole) values(?,?,?)";

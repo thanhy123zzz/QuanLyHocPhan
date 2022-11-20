@@ -87,5 +87,14 @@ public class LopHocPhanDaoImp implements LopHocPhanDao {
         return jdbcTemplate.query(sql,new LopHocPhanMapper());
     }
 
+    public int doiMaxSV(int malop, int sl) {
+        return jdbcTemplate.update("update Lophocphan set MaxSV = "+sl+" where malop = "+ malop);
+    }
+
+    @Override
+    public String doiTrangThai(int maLop, boolean trangThai) {
+        int kq = jdbcTemplate.update("update Lophocphan set TrangThai = "+trangThai+" where malop = "+ maLop);
+        return kq>0?"Đổi trạng thái thành công":"Đổi trạng thái thất bại";
+    }
 
 }
