@@ -50,4 +50,15 @@ public class QuanLyLopHocPhanController extends CommonController{
     public @ResponseBody int sl(int malop){
         return dangKyLopHocPhanService.getqldk(malop);
     }
+
+    @PostMapping("/changesl")
+    public @ResponseBody int SoLuongMax(int id, int sl){
+        lopHocPhanService.doiMaxSV(id,sl);
+        return dangKyLopHocPhanService.getqldk(id);
+    }
+
+    @PostMapping("/changeTT")
+    public @ResponseBody String thaydoi(int id, Boolean tt){
+        return lopHocPhanService.doiTrangThai(id,tt);
+    }
 }

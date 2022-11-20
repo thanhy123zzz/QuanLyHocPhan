@@ -10,4 +10,8 @@ public interface LopHocPhanDao {
 
     LopHocPhan getLopHocPhan(int MaLop);
     String insertLopHocPhan(LopHocPhan lopHocPhan, String dotHoc);
+
+    int doiMaxSV(int malop, int sl);
+
+    String doiTrangThai(int maLop, boolean trangThai);
 }

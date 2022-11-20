@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
   <link rel="stylesheet" href="/assets/css/ready.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/css/demo.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 </head>
@@ -125,6 +126,47 @@
     }
     function toURL(mactdt){
         window.location = 'http://localhost:8080/QL/'+mactdt;
+    }
+    function changeSL(id, value){
+        $('#label_'+id).replaceWith("<div id='div_sl_"+id+"'><input type='number' class='form-control' value='"+value+"' id='maxSV_"+id+"' >" +
+            "<button class='btn btn-light' onclick='ConfirmchangeSL("+id+")'>Xác nhận</button></div>")
+    }
+    function ConfirmchangeSL(id){
+        var sl = $("#maxSV_"+id).val();
+        $.ajax({
+            type : "POST",
+            url: "/QLLopHocPhan/changesl",
+            data: "id="+id+"&sl="+sl,
+            success: function(data) {
+                $('#div_sl_'+id).replaceWith('<label id="label_'+id+'" onclick="changeSL('+id+','+sl+')">'+data+'/'+sl+'</label>')
+            },
+            error: function(data){
+                alert("lỗi!");
+            }
+        });
+    }
+    function changeTrangThai(id,trangthai){
+        $.ajax({
+            type : "POST",
+            url: "/QLLopHocPhan/changeTT",
+            data: "id="+id+"&tt="+trangthai,
+            success: function(data) {
+                if(trangthai){
+                    $('#btntrangthai_'+id).replaceWith("<button id ='btntrangthai_"+id+"' onclick='changeTrangThai("+id+",false)' class='btn btn-danger'>Đóng ĐK</button>")
+                    document.getElementById("trangthai_"+id).textContent = "Đang mở";
+                    document.getElementById("trangthai_"+id).className = "text-success";
+                }
+                else{
+                    $('#btntrangthai_'+id).replaceWith("<button id ='btntrangthai_"+id+"' onclick='changeTrangThai("+id+",true)' class='btn btn-success'>Mở ĐK</button>")
+                    document.getElementById("trangthai_"+id).textContent = "Đã đóng";
+                    document.getElementById("trangthai_"+id).className = "text-danger";
+                }
+                alert(data);
+            },
+            error: function(data){
+                alert("lỗi!");
+            }
+        });
     }
 </script>
 </html>
