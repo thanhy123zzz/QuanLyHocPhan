@@ -1,10 +1,13 @@
 package com.example.quanlyhocphan.Controllers;
 
+import com.example.quanlyhocphan.Entities.DangKyLopHocPhan;
 import com.example.quanlyhocphan.Entities.HocPhan;
 import com.example.quanlyhocphan.Entities.Khoa;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -49,4 +52,5 @@ public class QuanLyHocPhanController extends CommonController{
         hocPhanService.updateHocPhan(hocPhan);
         return "redirect:/QLHocPhan/"+hocPhan.getKhoa().getMaKhoa();
     }
+
 }

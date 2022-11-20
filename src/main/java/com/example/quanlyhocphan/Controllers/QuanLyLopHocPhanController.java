@@ -1,13 +1,11 @@
 package com.example.quanlyhocphan.Controllers;
 
+import com.example.quanlyhocphan.Entities.DangKyLopHocPhan;
 import com.example.quanlyhocphan.Entities.HocPhan;
 import com.example.quanlyhocphan.Entities.LopHocPhan;
 import com.example.quanlyhocphan.Entities.PhongHoc;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,8 +26,8 @@ public class QuanLyLopHocPhanController extends CommonController{
     @GetMapping("/them")
     public ModelAndView ViewinsertLopHocPhan(){
         mv.clear();
-        List<PhongHoc> listPh = phongHocDao.getListPhongHoc();
         mv.setViewName("QuanLy/ThemLopHocPhan");
+        List<PhongHoc> listPh = phongHocDao.getListPhongHoc();
         mv.addObject("listDotHoc",namHocHocKyService.getLisNamHoc());
         mv.addObject("listLichHoc",lichHocService.getListLicHoc());
         mv.addObject("listGiaoVien",giaoVienDao.getListGiaoVien());
@@ -60,5 +58,33 @@ public class QuanLyLopHocPhanController extends CommonController{
     @PostMapping("/changeTT")
     public @ResponseBody String thaydoi(int id, Boolean tt){
         return lopHocPhanService.doiTrangThai(id,tt);
+    }
+
+    @GetMapping("/DK/{MaLop}")
+    public ModelAndView ViewListSVDK(@PathVariable("MaLop") int MaLop){
+        mv.clear();
+        mv.setViewName("QuanLy/ListSVDK");
+        List<DangKyLopHocPhan> list = dangKyLopHocPhanService.listSinhVienofLop(MaLop);
+        mv.addObject("listSVofLopHoc",list);
+        return mv;
+    }
+    @GetMapping("/sua/{maLop}")
+    public ModelAndView ViewSuaLopHocPhan(@PathVariable("maLop") int maLop){
+        mv.clear();
+        mv.addObject("Lop",lopHocPhanService.getLopHocPhan(maLop));
+        List<PhongHoc> listPh = phongHocDao.getListPhongHoc();
+        mv.addObject("listDotHoc",namHocHocKyService.getLisNamHoc());
+        mv.addObject("listLichHoc",lichHocService.getListLicHoc());
+        mv.addObject("listGiaoVien",giaoVienDao.getListGiaoVien());
+        mv.addObject("listPhong",listPh);
+        mv.addObject("listHocPhan",hocPhanService.getListHocPhan(null));
+        mv.setViewName("QuanLy/SuaLopHocPhan");
+        return mv;
+    }
+    @PostMapping("/sua")
+    public String Sua(LopHocPhan lopHocPhan,int mahocPhan, String dotHocstr){
+        lopHocPhan.setHocPhan(new HocPhan(mahocPhan));
+        lopHocPhanService.SuaLopHocPhan(lopHocPhan,dotHocstr);
+        return "redirect:/QLLopHocPhan";
     }
 }

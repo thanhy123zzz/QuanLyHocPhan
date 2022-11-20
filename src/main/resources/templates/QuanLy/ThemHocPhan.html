@@ -12,33 +12,33 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="/QLHocPhan/them" method="post" class="card">
+                        <form onsubmit="return confirm('Xác nhận thêm học phần này?')" action="/QLHocPhan/them" method="post" class="card">
                             <div class="card-header">
                                 <div class="card-title">Thêm học phần</div>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tenHocPhan">Tên Học phần</label>
-                                    <input type="text" class="form-control input-pill" name="tenHocPhan" id="tenHocPhan" placeholder="Tên Học phần">
+                                    <input required type="text" class="form-control input-pill" name="tenHocPhan" id="tenHocPhan" placeholder="Tên Học phần">
                                 </div>
                                 <div class="form-check">
                                     <label>Số tín chỉ</label><br/>
                                     <label class="form-radio-label">
-                                        <input class="form-radio-input" type="radio" name="soTinChi" value="2">
+                                        <input required class="form-radio-input" type="radio" name="soTinChi" value="2">
                                         <span class="form-radio-sign">2</span>
                                     </label>
                                     <label class="form-radio-label ml-3">
-                                        <input class="form-radio-input" type="radio" name="soTinChi" value="3">
+                                        <input required class="form-radio-input" type="radio" name="soTinChi" value="3">
                                         <span class="form-radio-sign">3</span>
                                     </label>
                                     <label class="form-radio-label ml-3">
-                                        <input class="form-radio-input" type="radio" name="soTinChi" value="4">
+                                        <input required class="form-radio-input" type="radio" name="soTinChi" value="4">
                                         <span class="form-radio-sign">4</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="pillSelect">Khoa</label>
-                                    <select name="maKhoa" class="form-control input-pill" id="pillSelect">
+                                    <select required name="maKhoa" class="form-control input-pill" id="pillSelect">
                                         <option th:each="k : ${listKhoa}" th:text="${k.getTenKhoa()}" th:value="${k.getMaKhoa()}"></option>
                                     </select>
                                 </div>

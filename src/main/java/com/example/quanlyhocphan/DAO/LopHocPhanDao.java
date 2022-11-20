@@ -22,4 +22,6 @@ public interface LopHocPhanDao {
 
     String doiTrangThai(int maLop, boolean trangThai);
 
+    String SuaLopHocPhan(LopHocPhan lopHocPhan, String dotHoc);
+
 }

@@ -19,4 +19,6 @@ public interface LopHocPhanService {
     int doiMaxSV(int malop, int sl);
 
     String doiTrangThai(int maLop, boolean trangThai);
+
+    String SuaLopHocPhan(LopHocPhan lopHocPhan, String dotHoc);
 }
